@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="1.0">
+    <head>
+        <title>てすと の Google リーダー登録フィード</title>
+    </head>
+    <body>
+        <outline title="Blog" text="Blog_text">
+            <outline text="#define int ll" title="#define int ll"
+                type="rss" xmlUrl="http://d.hatena.ne.jp/wistery_k/rss" htmlUrl="http://d.hatena.ne.jp/wistery_k/"/>
+            <outline text="941::blog" title="941::blog" type="rss"
+                xmlUrl="http://blog.kushii.net/index.rdf" htmlUrl="http://blog.kushii.net/"/>
+            <outline text="adakoda" title="adakoda" type="rss"
+                xmlUrl="http://www.adakoda.com/adakoda/atom.xml" htmlUrl="http://www.adakoda.com/adakoda/"/>
+        </outline>
+        <outline title="News" text="News_text">
+            <outline text="Android（アンドロイド）アプリおすすめサイト オクトバ"
+                title="Android（アンドロイド）アプリおすすめサイト オクトバ" type="rss"
+                xmlUrl="http://octoba.net/feed" htmlUrl="http://octoba.net"/>
+            <outline text="CodeZine" title="CodeZine" type="rss"
+                xmlUrl="http://rss.rssad.jp/rss/codezine/new/20/index.xml" htmlUrl="http://codezine.jp/"/>
+            <outline text="GIGAZINE" title="GIGAZINE" type="rss"
+                xmlUrl="http://gigazine.net/index.php?/news/rss_2.0/" htmlUrl="http://gigazine.net/"/>
+        </outline>
+    </body>
+</opml>

@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="f" uri="http://www.slim3.org/functions"%>
+
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -11,22 +12,24 @@
 	<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
 
 	<title>Index</title>
+<title>reader Fileupload</title>
 </head>
 <body>
-
 <div class="container">
-	<c:choose>
-		<c:when test="${login}">
-			<h1>Hello ${f:h(userName)} !!!</h1>
-			<a href="${f:h(logoutUrl)}" class="btn btn-primary btn-large">logout</a>
-			
-			<a href="/reader/fileupload" class="btn btn-primary btn-large">file upload</a>
-		</c:when>
-		<c:otherwise>
-			<a href="${f:h(loginUrl)}" class="btn btn-primary btn-large">login</a>
-		</c:otherwise>
-	</c:choose>
+	<h1>Hello reader Fileupload !!!</h1>
+	<form action="/reader/fileupload" method="post" enctype="multipart/form-data">
+		<input type="file" name="xmlfile">
+		<input type="submit" value="send">
+	</form>
+	<table>
+		<c:forEach var="url" items="${urls}" varStatus="status">
+			<tr>
+				<td>${url}</td>
+			</tr>
+		</c:forEach>
+	</table>
 </div>
+
 
 <script src="//code.jquery.com/jquery.js"></script>
 <script src="/js/bootstrap.min.js"></script>

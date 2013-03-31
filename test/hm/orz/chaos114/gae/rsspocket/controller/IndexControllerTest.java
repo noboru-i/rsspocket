@@ -38,7 +38,6 @@ public class IndexControllerTest extends ControllerTestCase {
         assertThat((Boolean) tester.requestScope("login"), is(Boolean.TRUE));
         assertThat(tester.requestScope("logoutUrl"), is(notNullValue()));
         assertThat((String)tester.requestScope("userName"), is(email));
-        assertThat(tester.requestScope("authUrl"), is(notNullValue()));
     }
 
     private static final String KEY_USER_ID =
