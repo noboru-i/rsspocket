@@ -12,15 +12,15 @@ public class IndexController extends Controller {
     public Navigation run() throws Exception {
         final UserService userService = UserServiceFactory.getUserService();
         final String currentURI = request.getRequestURI();
-        if (request.getUserPrincipal() == null) {
+        if (userService.isUserLoggedIn()) {
+            // ログイン済み
+            requestScope("login", true);
+            requestScope("userName", userService.getCurrentUser().getEmail());
+            requestScope("logoutUrl", userService.createLogoutURL(currentURI));
+        } else {
             // 未ログイン
             requestScope("login", false);
             requestScope("loginUrl", userService.createLoginURL(currentURI));
-        } else {
-            // ログイン済み
-            requestScope("login", true);
-            requestScope("userName", request.getUserPrincipal().getName());
-            requestScope("logoutUrl", userService.createLogoutURL(currentURI));
         }
         return forward("index.jsp");
     }
