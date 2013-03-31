@@ -19,6 +19,8 @@
 		<c:when test="${login}">
 			<h1>Hello ${f:h(userName)} !!!</h1>
 			<a href="${f:h(logoutUrl)}" class="btn btn-primary btn-large">logout</a>
+			
+			<a href="${f:h(authUrl)}" class="btn btn-primary btn-large">add auth</a>
 		</c:when>
 		<c:otherwise>
 			<a href="${f:h(loginUrl)}" class="btn btn-primary btn-large">login</a>
