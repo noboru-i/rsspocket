@@ -2,6 +2,8 @@ package hm.orz.chaos114.gae.rsspocket.service.reader;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
+import static org.junit.matchers.JUnitMatchers.*;
+import hm.orz.chaos114.gae.rsspocket.model.reader.RssFeed;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -26,10 +28,11 @@ public class XmlParseServiceTest extends AppEngineTestCase {
         final FileItem fileItem =
                 new FileItem("subscriptions.xml", "application/xml", getFixture());
         // Exercise
-        final List<String> actual = service.parseXml(fileItem);
+        final List<RssFeed> actual = service.parseXml(fileItem);
         // Verify
         assertThat(actual, is(notNullValue()));
-        assertThat(actual.get(0), is("http://d.hatena.ne.jp/wistery_k/rss"));
+        assertThat(actual.get(0).getRssUrl(), is("http://d.hatena.ne.jp/wistery_k/rss"));
+        assertThat(actual.get(0).getTags(), is(hasItems("Blog", "#define int ll")));
     }
 
     private byte[] getFixture() throws Exception {

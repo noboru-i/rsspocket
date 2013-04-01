@@ -4,7 +4,7 @@
         <title>てすと の Google リーダー登録フィード</title>
     </head>
     <body>
-        <outline title="Blog" text="Blog_text">
+        <outline title="Blog" text="Blog">
             <outline text="#define int ll" title="#define int ll"
                 type="rss" xmlUrl="http://d.hatena.ne.jp/wistery_k/rss" htmlUrl="http://d.hatena.ne.jp/wistery_k/"/>
             <outline text="941::blog" title="941::blog" type="rss"
@@ -12,7 +12,7 @@
             <outline text="adakoda" title="adakoda" type="rss"
                 xmlUrl="http://www.adakoda.com/adakoda/atom.xml" htmlUrl="http://www.adakoda.com/adakoda/"/>
         </outline>
-        <outline title="News" text="News_text">
+        <outline title="News" text="News">
             <outline text="Android（アンドロイド）アプリおすすめサイト オクトバ"
                 title="Android（アンドロイド）アプリおすすめサイト オクトバ" type="rss"
                 xmlUrl="http://octoba.net/feed" htmlUrl="http://octoba.net"/>

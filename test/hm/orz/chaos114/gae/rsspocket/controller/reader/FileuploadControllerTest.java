@@ -32,7 +32,7 @@ public class FileuploadControllerTest extends ControllerTestCase {
         assertThat(controller, is(notNullValue()));
         assertThat(tester.isRedirect(), is(false));
         assertThat(tester.getDestinationPath(), is("/reader/fileupload.jsp"));
-        assertThat(tester.requestScope("urls"), is(notNullValue()));
+        assertThat(tester.requestScope("rssFeedList"), is(notNullValue()));
     }
 
     private FileItem getFileItem() throws Exception{

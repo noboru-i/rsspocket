@@ -21,10 +21,15 @@
 		<input type="file" name="xmlfile">
 		<input type="submit" value="send">
 	</form>
-	<table>
-		<c:forEach var="url" items="${urls}" varStatus="status">
+	<table border="1">
+		<c:forEach var="rssFeed" items="${rssFeedList}" varStatus="status">
 			<tr>
-				<td>${url}</td>
+				<td>
+					<c:forEach var="tag" items="${rssFeed.tags}">
+						<input type="text" value="${tag}"><br>
+					</c:forEach>
+				</td>
+				<td>${rssFeed.rssUrl}</td>
 			</tr>
 		</c:forEach>
 	</table>
