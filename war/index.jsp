@@ -26,6 +26,7 @@
 			<a href="${f:h(loginUrl)}" class="btn btn-primary btn-large">login</a>
 		</c:otherwise>
 	</c:choose>
+	<a href="${f:url('/pocket/auth')}" class="btn btn-primary btn-large">Login to Pocket</a>
 </div>
 
 <script src="//code.jquery.com/jquery.js"></script>

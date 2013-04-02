@@ -18,6 +18,6 @@
 		<!-- Disable cookies to avoid runtime permissions error -->
 		<property name="com.google.gdata.DisableCookieHandler" value="true"/>
 	</system-properties>
-	<sessions-enabled>false</sessions-enabled>
+	<sessions-enabled>true</sessions-enabled>
 	<threadsafe>true</threadsafe>
 </appengine-web-app>
