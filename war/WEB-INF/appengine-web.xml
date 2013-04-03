@@ -13,16 +13,11 @@
 		<property name="slim3.uploadFileSizeMax" value="100000"/>
 		-->
 		<property name="java.util.logging.config.file" value="WEB-INF/classes/logging.properties"/>
-		
-		<!-- For GData API -->
-		<!-- Disable cookies to avoid runtime permissions error -->
-		<property name="com.google.gdata.DisableCookieHandler" value="true"/>
+
+		<!-- tokenなどを暗号化するため -->
+		<property name="slim3.cipherGlobalKey" value="hogehogehogehoge"/>
 	</system-properties>
 	<sessions-enabled>true</sessions-enabled>
 	<threadsafe>true</threadsafe>
 
-	<!-- tokenなどを暗号化するため -->
-	<system-properties>
-		<property name="slim3.cipherGlobalKey" value="hogehogehogehoge"/>
-	</system-properties>
 </appengine-web-app>
