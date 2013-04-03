@@ -3,10 +3,20 @@ package hm.orz.chaos114.gae.rsspocket.controller;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.slim3.datastore.Datastore;
 import org.slim3.tester.ControllerTestCase;
 
 public class IndexControllerTest extends ControllerTestCase {
+
+    @Override
+    @Before
+    public void setUp() throws Exception {
+        super.setUp();
+
+        Datastore.setGlobalCipherKey("hogehogehogehoge");
+    }
 
     @Test
     public void 未認証のテスト() throws Exception {
