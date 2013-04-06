@@ -41,8 +41,8 @@ public class IndexControllerTest extends ControllerTestCase {
         // Verify
         final IndexController controller = tester.getController();
         assertThat(controller, is(notNullValue()));
-        assertThat(tester.isRedirect(), is(false));
-        assertThat(tester.getDestinationPath(), is("/index.jsp"));
+        assertThat(tester.isRedirect(), is(true));
+        assertThat(tester.getDestinationPath(), is("/home"));
     }
 
     private static final String KEY_USER_ID =

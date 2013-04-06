@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<%@page pageEncoding="UTF-8" isELIgnored="false" session="false"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@taglib prefix="f" uri="http://www.slim3.org/functions"%>
 
 <html>
 <head>
@@ -10,10 +6,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link href="/css/rsspocket.css" rel="stylesheet">
 
 	<title>Home</title>
 </head>
 <body>
+
+<jsp:include page="/include/navbar.jsp" />
 
 <div class="container">
 	<h1>Hello ${f:h(user.email)} !!!</h1>

@@ -1,0 +1,8 @@
+{
+  "name": "rsspocket",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib": "~0.6.1"
+  }
+}

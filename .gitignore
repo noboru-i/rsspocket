@@ -1,9 +1,6 @@
 *.class
-
-# Package Files #
-*.jar
-*.war
-*.ear
+node_modules
+.sass-cache
 
 # secret keys #
 pocket.properties
