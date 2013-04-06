@@ -6,6 +6,9 @@ module.exports = (grunt) ->
             compass:
                 files: 'sass/**/*.sass',
                 tasks: ['compass']
+            copy:
+                files: 'css/**/*.css',
+                tasks: ['copy']
             coffee:
                 files: 'coffee/**/*.coffee',
                 tasks: ['coffee']
@@ -16,10 +19,17 @@ module.exports = (grunt) ->
                     sassDir: 'sass',
                     cssDir: '../war/css'
 
+        copy:
+            main:
+                files: [
+                    {src: ['css/*'], dest: '../war/', filter: 'isFile'},
+                    {src: ['js/*'], dest: '../war/', filter: 'isFile'}
+                ]
+
         coffee:
             compile:
                 files:
                     '../war/js/app.js': ['coffee/**/*.coffee']
 
-    grunt.registerTask 'default', ['compass', 'coffee']
+    grunt.registerTask 'default', ['compass', 'copy', 'coffee']
 
