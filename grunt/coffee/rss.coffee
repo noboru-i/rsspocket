@@ -1,6 +1,6 @@
 @Rss =
     add: (index) ->
-        data = @_getParam index
+        data = [@_getParam index]
         console.log data
         callback = (data) ->
             console.log data
@@ -13,7 +13,7 @@
         console.log data
         callback = (data) ->
             console.log data
-        $.post '/api/rss/builkadd', JSON.stringify(data), callback
+        $.post '/api/rss/add', JSON.stringify(data), callback
 
     _getParam: (index) ->
         tags = $.makeArray $('.tag_'+index).map(() -> return ($(this).val()))
