@@ -16,6 +16,7 @@
 </head>
 <body>
 <div class="container">
+	<h1>${user.email}</h1>
 	<h1>Hello reader Fileupload !!!</h1>
 	<form action="/reader/fileupload" method="post" enctype="multipart/form-data">
 		<input type="file" name="xmlfile">
