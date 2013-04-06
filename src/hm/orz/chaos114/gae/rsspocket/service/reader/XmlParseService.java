@@ -62,7 +62,7 @@ public class XmlParseService {
                 return;
             }
             final RssFeed feed = new RssFeed();
-            feed.setRssUrl(xmlUrl);
+            feed.setUrl(xmlUrl);
             final Set<String> tags = new LinkedHashSet<>();
             tags.addAll(parentTags);
             tags.addAll(getTagsFromAttributes(attributes));

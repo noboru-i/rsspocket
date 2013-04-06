@@ -4,8 +4,11 @@ module.exports = (grunt) ->
     grunt.initConfig
         watch:
             compass:
-                files: "sass/**/*.sass",
-                tasks: ["compass"]
+                files: 'sass/**/*.sass',
+                tasks: ['compass']
+            coffee:
+                files: 'coffee/**/*.coffee',
+                tasks: ['coffee']
 
         compass:
             dist:
@@ -13,5 +16,10 @@ module.exports = (grunt) ->
                     sassDir: 'sass',
                     cssDir: '../war/css'
 
-    grunt.registerTask 'default', ['compass']
-            
+        coffee:
+            compile:
+                files:
+                    '../war/js/app.js': ['coffee/**/*.coffee']
+
+    grunt.registerTask 'default', ['compass', 'coffee']
+

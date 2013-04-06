@@ -19,7 +19,7 @@ public class RssFeed implements Serializable {
     @Attribute(version = true)
     private Long version;
 
-    private String rssUrl;
+    private String url;
 
     private Set<String> tags;
 
@@ -61,12 +61,12 @@ public class RssFeed implements Serializable {
         this.version = version;
     }
 
-    public String getRssUrl() {
-        return rssUrl;
+    public String getUrl() {
+        return url;
     }
 
-    public void setRssUrl(final String rssUrl) {
-        this.rssUrl = rssUrl;
+    public void setUrl(final String url) {
+        this.url = url;
     }
 
     public Set<String> getTags() {

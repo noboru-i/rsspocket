@@ -16,21 +16,32 @@
 <jsp:include page="/include/navbar.jsp" />
 
 <div class="container">
-	<h1>${user.email}</h1>
-	<h1>Hello reader Fileupload !!!</h1>
+	<h1>Hello ${user.email}</h1>
+	<hr>
 	<form action="/reader/fileupload" method="post" enctype="multipart/form-data">
 		<input type="file" name="xmlfile">
 		<input type="submit" value="send">
 	</form>
+	<hr>
 	<table border="1">
 		<c:forEach var="rssFeed" items="${rssFeedList}" varStatus="status">
-			<tr>
+			<tr id="like_${status.index}">
 				<td>
-					<c:forEach var="tag" items="${rssFeed.tags}">
-						<input type="text" value="${tag}"><br>
+					<label class="checkbox">
+						<input type="checkbox" id="regist_${status.index}" name="regist" checked="checked"> 登録
+					</label>
+				</td>
+				<td id="url_${status.index}">${rssFeed.url}</td>
+				<td>
+					<c:forEach var="tag" items="${rssFeed.tags}" varStatus="tagStatus">
+						<input type="text" class="tag_${status.index}" value="${tag}"><br>
 					</c:forEach>
 				</td>
-				<td>${rssFeed.rssUrl}</td>
+				<td>
+					<a href="javascript:void(0);" class="btn btn-success" onClick="Rss.add(${status.index})">
+						<i class="icon-plus-sign icon-white"></i> 登録
+					</a>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -39,6 +50,7 @@
 
 <script src="//code.jquery.com/jquery.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+<script src="/js/app.js"></script>
 
 </body>
 </html>

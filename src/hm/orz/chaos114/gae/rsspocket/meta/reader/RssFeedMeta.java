@@ -1,6 +1,6 @@
 package hm.orz.chaos114.gae.rsspocket.meta.reader;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2013-04-02 00:38:07")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2013-04-06 23:39:44")
 /** */
 public final class RssFeedMeta extends org.slim3.datastore.ModelMeta<hm.orz.chaos114.gae.rsspocket.model.reader.RssFeed> {
 
@@ -8,10 +8,10 @@ public final class RssFeedMeta extends org.slim3.datastore.ModelMeta<hm.orz.chao
     public final org.slim3.datastore.CoreAttributeMeta<hm.orz.chaos114.gae.rsspocket.model.reader.RssFeed, com.google.appengine.api.datastore.Key> key = new org.slim3.datastore.CoreAttributeMeta<hm.orz.chaos114.gae.rsspocket.model.reader.RssFeed, com.google.appengine.api.datastore.Key>(this, "__key__", "key", com.google.appengine.api.datastore.Key.class);
 
     /** */
-    public final org.slim3.datastore.StringAttributeMeta<hm.orz.chaos114.gae.rsspocket.model.reader.RssFeed> rssUrl = new org.slim3.datastore.StringAttributeMeta<hm.orz.chaos114.gae.rsspocket.model.reader.RssFeed>(this, "rssUrl", "rssUrl");
+    public final org.slim3.datastore.StringCollectionAttributeMeta<hm.orz.chaos114.gae.rsspocket.model.reader.RssFeed, java.util.Set<java.lang.String>> tags = new org.slim3.datastore.StringCollectionAttributeMeta<hm.orz.chaos114.gae.rsspocket.model.reader.RssFeed, java.util.Set<java.lang.String>>(this, "tags", "tags", java.util.Set.class);
 
     /** */
-    public final org.slim3.datastore.StringCollectionAttributeMeta<hm.orz.chaos114.gae.rsspocket.model.reader.RssFeed, java.util.Set<java.lang.String>> tags = new org.slim3.datastore.StringCollectionAttributeMeta<hm.orz.chaos114.gae.rsspocket.model.reader.RssFeed, java.util.Set<java.lang.String>>(this, "tags", "tags", java.util.Set.class);
+    public final org.slim3.datastore.StringAttributeMeta<hm.orz.chaos114.gae.rsspocket.model.reader.RssFeed> url = new org.slim3.datastore.StringAttributeMeta<hm.orz.chaos114.gae.rsspocket.model.reader.RssFeed>(this, "url", "url");
 
     /** */
     public final org.slim3.datastore.CoreAttributeMeta<hm.orz.chaos114.gae.rsspocket.model.reader.RssFeed, java.lang.Long> version = new org.slim3.datastore.CoreAttributeMeta<hm.orz.chaos114.gae.rsspocket.model.reader.RssFeed, java.lang.Long>(this, "version", "version", java.lang.Long.class);
@@ -34,8 +34,8 @@ public final class RssFeedMeta extends org.slim3.datastore.ModelMeta<hm.orz.chao
     public hm.orz.chaos114.gae.rsspocket.model.reader.RssFeed entityToModel(com.google.appengine.api.datastore.Entity entity) {
         hm.orz.chaos114.gae.rsspocket.model.reader.RssFeed model = new hm.orz.chaos114.gae.rsspocket.model.reader.RssFeed();
         model.setKey(entity.getKey());
-        model.setRssUrl((java.lang.String) entity.getProperty("rssUrl"));
         model.setTags(new java.util.HashSet<java.lang.String>(toList(java.lang.String.class, entity.getProperty("tags"))));
+        model.setUrl((java.lang.String) entity.getProperty("url"));
         model.setVersion((java.lang.Long) entity.getProperty("version"));
         return model;
     }
@@ -49,8 +49,8 @@ public final class RssFeedMeta extends org.slim3.datastore.ModelMeta<hm.orz.chao
         } else {
             entity = new com.google.appengine.api.datastore.Entity(kind);
         }
-        entity.setProperty("rssUrl", m.getRssUrl());
         entity.setProperty("tags", m.getTags());
+        entity.setProperty("url", m.getUrl());
         entity.setProperty("version", m.getVersion());
         entity.setProperty("slim3.schemaVersion", 1);
         return entity;
@@ -118,10 +118,6 @@ public final class RssFeedMeta extends org.slim3.datastore.ModelMeta<hm.orz.chao
             writer.setNextPropertyName("key");
             encoder0.encode(writer, m.getKey());
         }
-        if(m.getRssUrl() != null){
-            writer.setNextPropertyName("rssUrl");
-            encoder0.encode(writer, m.getRssUrl());
-        }
         if(m.getTags() != null){
             writer.setNextPropertyName("tags");
             writer.beginArray();
@@ -129,6 +125,10 @@ public final class RssFeedMeta extends org.slim3.datastore.ModelMeta<hm.orz.chao
                 encoder0.encode(writer, v);
             }
             writer.endArray();
+        }
+        if(m.getUrl() != null){
+            writer.setNextPropertyName("url");
+            encoder0.encode(writer, m.getUrl());
         }
         if(m.getVersion() != null){
             writer.setNextPropertyName("version");
@@ -144,8 +144,6 @@ public final class RssFeedMeta extends org.slim3.datastore.ModelMeta<hm.orz.chao
         org.slim3.datastore.json.Default decoder0 = new org.slim3.datastore.json.Default();
         reader = rootReader.newObjectReader("key");
         m.setKey(decoder0.decode(reader, m.getKey()));
-        reader = rootReader.newObjectReader("rssUrl");
-        m.setRssUrl(decoder0.decode(reader, m.getRssUrl()));
         reader = rootReader.newObjectReader("tags");
         {
             java.util.HashSet<java.lang.String> elements = new java.util.HashSet<java.lang.String>();
@@ -163,6 +161,8 @@ public final class RssFeedMeta extends org.slim3.datastore.ModelMeta<hm.orz.chao
                 m.setTags(elements);
             }
         }
+        reader = rootReader.newObjectReader("url");
+        m.setUrl(decoder0.decode(reader, m.getUrl()));
         reader = rootReader.newObjectReader("version");
         m.setVersion(decoder0.decode(reader, m.getVersion()));
         return m;

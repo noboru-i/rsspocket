@@ -31,7 +31,7 @@ public class XmlParseServiceTest extends AppEngineTestCase {
         final List<RssFeed> actual = service.parseXml(fileItem);
         // Verify
         assertThat(actual, is(notNullValue()));
-        assertThat(actual.get(0).getRssUrl(), is("http://d.hatena.ne.jp/wistery_k/rss"));
+        assertThat(actual.get(0).getUrl(), is("http://d.hatena.ne.jp/wistery_k/rss"));
         assertThat(actual.get(0).getTags(), is(hasItems("Blog", "#define int ll")));
     }
 
