@@ -22,6 +22,13 @@ public class StreamFilter implements Filter {
     public void doFilter(final ServletRequest request,
             final ServletResponse response, final FilterChain chain)
                     throws IOException, ServletException {
+        final String currentUrl =
+                ((HttpServletRequest) request).getRequestURI();
+        if (currentUrl.startsWith("/_ah")) {
+            // "/_ah"から始まるURLを処理すると、500や404エラーとなるため処理しない
+            chain.doFilter(request, response);
+            return;
+        }
         final ServletRequest newRequest =
                 new BufferedServletRequestWrapper((HttpServletRequest) request);
         chain.doFilter(newRequest, response);
