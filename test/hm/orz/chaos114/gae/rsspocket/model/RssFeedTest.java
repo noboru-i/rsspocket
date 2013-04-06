@@ -1,4 +1,6 @@
-package hm.orz.chaos114.gae.rsspocket.model.reader;
+package hm.orz.chaos114.gae.rsspocket.model;
+
+import hm.orz.chaos114.gae.rsspocket.model.RssFeed;
 
 import org.slim3.tester.AppEngineTestCase;
 import org.junit.Test;

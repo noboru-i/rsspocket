@@ -1,4 +1,6 @@
-package hm.orz.chaos114.gae.rsspocket.dao.reader;
+package hm.orz.chaos114.gae.rsspocket.dao;
+
+import hm.orz.chaos114.gae.rsspocket.dao.RssFeedDao;
 
 import org.slim3.tester.AppEngineTestCase;
 import org.junit.Test;

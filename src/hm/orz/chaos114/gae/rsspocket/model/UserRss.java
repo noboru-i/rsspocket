@@ -1,15 +1,17 @@
-package hm.orz.chaos114.gae.rsspocket.model.reader;
+package hm.orz.chaos114.gae.rsspocket.model;
 
 import java.io.Serializable;
 import java.util.Set;
 
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
+import org.slim3.datastore.ModelRef;
 
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.users.User;
 
 @Model(schemaVersion = 1)
-public class RssFeed implements Serializable {
+public class UserRss implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -19,7 +21,9 @@ public class RssFeed implements Serializable {
     @Attribute(version = true)
     private Long version;
 
-    private String url;
+    private User user;
+
+    private final ModelRef<RssFeed> rssFeed = new ModelRef<>(RssFeed.class);
 
     private Set<String> tags;
 
@@ -61,12 +65,16 @@ public class RssFeed implements Serializable {
         this.version = version;
     }
 
-    public String getUrl() {
-        return url;
+    public User getUser() {
+        return user;
     }
 
-    public void setUrl(final String url) {
-        this.url = url;
+    public void setUser(final User user) {
+        this.user = user;
+    }
+
+    public ModelRef<RssFeed> getRssFeed() {
+        return rssFeed;
     }
 
     public Set<String> getTags() {
@@ -96,7 +104,7 @@ public class RssFeed implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final RssFeed other = (RssFeed) obj;
+        final UserRss other = (UserRss) obj;
         if (key == null) {
             if (other.key != null) {
                 return false;

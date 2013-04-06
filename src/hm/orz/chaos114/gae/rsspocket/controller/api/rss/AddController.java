@@ -1,18 +1,17 @@
 package hm.orz.chaos114.gae.rsspocket.controller.api.rss;
 
 import hm.orz.chaos114.gae.rsspocket.controller.BaseApiController;
-import hm.orz.chaos114.gae.rsspocket.dao.reader.RssFeedDao;
-import hm.orz.chaos114.gae.rsspocket.model.reader.RssFeed;
-
-import java.util.Arrays;
+import hm.orz.chaos114.gae.rsspocket.service.rss.AddService;
 
 import javax.servlet.http.HttpServletResponse;
 
-import net.arnx.jsonic.JSON;
-
 import org.slim3.controller.Navigation;
 
+import com.google.appengine.api.users.User;
+
 public class AddController extends BaseApiController {
+
+    private final AddService addService = new AddService();
 
     @Override
     public Navigation run() throws Exception {
@@ -20,9 +19,8 @@ public class AddController extends BaseApiController {
             throw new UnsupportedOperationException();
         }
 
-        final RssFeed[] rssFeeds = JSON.decode(getBody(), RssFeed[].class);
-        final RssFeedDao dao = new RssFeedDao();
-        dao.put(Arrays.asList(rssFeeds));
+        final User user = requestScope("user");
+        addService.exec(user, getBody());
 
         responseWriter(HttpServletResponse.SC_OK, "{}");
 

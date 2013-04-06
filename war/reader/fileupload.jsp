@@ -28,21 +28,21 @@
 			<th>URL</th>
 			<th>登録</th>
 		</tr>
-		<c:if test="${empty rssFeedList}" >
+		<c:if test="${empty userRssList}" >
 			<tr>
 				<td colspan="4">データがありません。ファイルをアップロードしてください。</td>
 			</tr>
 		</c:if>
-		<c:forEach var="rssFeed" items="${rssFeedList}" varStatus="status">
+		<c:forEach var="userRss" items="${userRssList}" varStatus="status">
 			<tr id="like_${status.index}">
 				<td>
 					<label class="checkbox">
 						<input type="checkbox" id="regist_${status.index}" data-id="${status.index}" checked="checked" class="check_regist"> 登録
 					</label>
 				</td>
-				<td id="url_${status.index}">${rssFeed.url}</td>
+				<td id="url_${status.index}">${userRss.rssFeed.model.url}</td>
 				<td>
-					<c:forEach var="tag" items="${rssFeed.tags}" varStatus="tagStatus">
+					<c:forEach var="tag" items="${userRss.tags}" varStatus="tagStatus">
 						<div class="input-append">
 							<input type="text" class="tag_${status.index}" value="${tag}">
 							<button class="btn" type="button" onClick="$('.tag_${status.index}', $(this).parent()).val('')">Clear</button>

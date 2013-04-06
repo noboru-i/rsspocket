@@ -1,6 +1,7 @@
 package hm.orz.chaos114.gae.rsspocket.service.reader;
 
-import hm.orz.chaos114.gae.rsspocket.model.reader.RssFeed;
+import hm.orz.chaos114.gae.rsspocket.model.RssFeed;
+import hm.orz.chaos114.gae.rsspocket.model.UserRss;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -20,7 +21,7 @@ import org.xml.sax.ext.DefaultHandler2;
 
 public class XmlParseService {
 
-    public List<RssFeed> parseXml(final FileItem fileItem) {
+    public List<UserRss> parseXml(final FileItem fileItem) {
         final SAXParserFactory factory = SAXParserFactory.newInstance();
         factory.setValidating(true);
 
@@ -37,11 +38,11 @@ public class XmlParseService {
         } catch (final Exception e) {
         }
 
-        return handler.rssFeedList;
+        return handler.userRssList;
     }
 
     private class Handler extends DefaultHandler2 {
-        List<RssFeed> rssFeedList = new ArrayList<>();
+        List<UserRss> userRssList = new ArrayList<>();
 
         private Set<String> parentTags = new LinkedHashSet<>();
         private int depth = 0;
@@ -62,12 +63,14 @@ public class XmlParseService {
                 return;
             }
             final RssFeed feed = new RssFeed();
+            final UserRss userRss = new UserRss();
             feed.setUrl(xmlUrl);
+            userRss.getRssFeed().setModel(feed);
             final Set<String> tags = new LinkedHashSet<>();
             tags.addAll(parentTags);
             tags.addAll(getTagsFromAttributes(attributes));
-            feed.setTags(tags);
-            rssFeedList.add(feed);
+            userRss.setTags(tags);
+            userRssList.add(userRss);
         }
 
         @Override

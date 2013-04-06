@@ -3,6 +3,7 @@ node_modules
 .sass-cache
 war/css
 war/js
+*.swp
 
 # secret keys #
 pocket.properties

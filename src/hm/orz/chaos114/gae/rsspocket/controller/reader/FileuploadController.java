@@ -1,6 +1,6 @@
 package hm.orz.chaos114.gae.rsspocket.controller.reader;
 
-import hm.orz.chaos114.gae.rsspocket.model.reader.RssFeed;
+import hm.orz.chaos114.gae.rsspocket.model.UserRss;
 import hm.orz.chaos114.gae.rsspocket.service.reader.XmlParseService;
 
 import java.util.List;
@@ -17,8 +17,8 @@ public class FileuploadController extends Controller {
     public Navigation run() throws Exception {
         final FileItem fileItem = requestScope("xmlfile");
         if (fileItem != null) {
-            final List<RssFeed> parseXml = xmlParseService.parseXml(fileItem);
-            requestScope("rssFeedList", parseXml);
+            final List<UserRss> parseXml = xmlParseService.parseXml(fileItem);
+            requestScope("userRssList", parseXml);
         }
         return forward("fileupload.jsp");
     }
