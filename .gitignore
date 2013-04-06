@@ -1,6 +1,8 @@
 *.class
 node_modules
 .sass-cache
+war/css
+war/js
 
 # secret keys #
 pocket.properties
