@@ -30,6 +30,6 @@ public class Auth_callbackController extends Controller {
         final UserInfoDao dao = new UserInfoDao();
         dao.updatePocketAccessTokenAsync(userService.getCurrentUser(), accessToken);
 
-        return redirect("/");
+        return redirect("/home");
     }
 }

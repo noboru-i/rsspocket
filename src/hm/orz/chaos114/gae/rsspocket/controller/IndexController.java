@@ -15,7 +15,6 @@ public class IndexController extends Controller {
     @Override
     public Navigation run() throws Exception {
         final UserService userService = UserServiceFactory.getUserService();
-        final String currentURI = request.getRequestURI();
         if (userService.isUserLoggedIn()) {
             final User user = userService.getCurrentUser();
             // 認証情報の保存
@@ -26,16 +25,8 @@ public class IndexController extends Controller {
                 userInfo.setUser(user);
                 dao.putAsync(userInfo);
             }
-
-            // ログイン済み
-            requestScope("login", true);
-            requestScope("userName", userService.getCurrentUser().getEmail());
-            requestScope("logoutUrl", userService.createLogoutURL(currentURI));
-        } else {
-            // 未ログイン
-            requestScope("login", false);
-            requestScope("loginUrl", userService.createLoginURL(currentURI));
         }
+
         return forward("index.jsp");
     }
 }

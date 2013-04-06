@@ -29,8 +29,6 @@ public class IndexControllerTest extends ControllerTestCase {
         assertThat(controller, is(notNullValue()));
         assertThat(tester.isRedirect(), is(false));
         assertThat(tester.getDestinationPath(), is("/index.jsp"));
-        assertThat((Boolean)tester.requestScope("login"), is(Boolean.FALSE));
-        assertThat(tester.requestScope("loginUrl"), is(notNullValue()));
     }
 
     @Test
@@ -45,9 +43,6 @@ public class IndexControllerTest extends ControllerTestCase {
         assertThat(controller, is(notNullValue()));
         assertThat(tester.isRedirect(), is(false));
         assertThat(tester.getDestinationPath(), is("/index.jsp"));
-        assertThat((Boolean) tester.requestScope("login"), is(Boolean.TRUE));
-        assertThat(tester.requestScope("logoutUrl"), is(notNullValue()));
-        assertThat((String)tester.requestScope("userName"), is(email));
     }
 
     private static final String KEY_USER_ID =

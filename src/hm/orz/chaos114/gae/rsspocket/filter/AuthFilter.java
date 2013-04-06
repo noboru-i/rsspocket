@@ -36,11 +36,14 @@ public class AuthFilter implements Filter {
                 ((HttpServletRequest) request).getRequestURI();
         if (!userService.isUserLoggedIn() && isIncludePath(currentUrl)) {
             // 指定されたURLへのアクセスの場合、ログイン画面にリダイレクトする
-            ((HttpServletResponse) response).sendRedirect("/?no_login=1");
+            ((HttpServletResponse) response).sendRedirect("/?error=no_login");
             return;
         }
 
+        request.setAttribute("login", userService.isUserLoggedIn());
         request.setAttribute("user", userService.getCurrentUser());
+        request.setAttribute("loginUrl", userService.createLoginURL("/home"));
+        request.setAttribute("logoutUrl", userService.createLogoutURL("/"));
         chain.doFilter(request, response);
     }
 
