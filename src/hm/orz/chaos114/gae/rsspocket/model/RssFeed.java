@@ -20,6 +20,14 @@ public class RssFeed implements Serializable {
 
     private String url;
 
+    public RssFeed() {
+        // no-op
+    }
+
+    public RssFeed(final String url) {
+        this.url = url;
+    }
+
     /**
      * Returns the key.
      *

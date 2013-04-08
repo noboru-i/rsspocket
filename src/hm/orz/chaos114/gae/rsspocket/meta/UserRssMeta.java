@@ -1,6 +1,6 @@
 package hm.orz.chaos114.gae.rsspocket.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2013-04-07 03:53:33")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2013-04-08 23:57:17")
 /** */
 public final class UserRssMeta extends org.slim3.datastore.ModelMeta<hm.orz.chaos114.gae.rsspocket.model.UserRss> {
 

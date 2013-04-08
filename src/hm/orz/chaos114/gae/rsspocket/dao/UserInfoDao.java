@@ -54,7 +54,7 @@ public class UserInfoDao extends DaoBase<UserInfo>{
     }
 
     /**
-     * 指定されたUserに
+     * 指定されたUserにaccess tokenを設定する。
      * @param user
      * @param pocketAccessToken
      * @return
