@@ -24,8 +24,8 @@
 	<table class="table table-striped">
 		<tr>
 			<th>一括</th>
-			<th>タグ</th>
 			<th>URL</th>
+			<th>タグ</th>
 			<th>登録</th>
 		</tr>
 		<c:if test="${empty userRssList}" >
