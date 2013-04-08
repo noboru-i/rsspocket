@@ -6,6 +6,7 @@
 				<ul class="nav">
 					<li class="active"><a href="/">Top</a></li>
 					<li><a href="/home">Home</a></li>
+					<li><a href="/rss">Rss</a></li>
 				</ul>
 				<c:choose>
 					<c:when test="${login}">
