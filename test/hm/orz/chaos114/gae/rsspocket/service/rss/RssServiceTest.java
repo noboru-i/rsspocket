@@ -13,9 +13,9 @@ import org.slim3.tester.AppEngineTestCase;
 
 import com.google.appengine.api.users.User;
 
-public class AddServiceTest extends AppEngineTestCase {
+public class RssServiceTest extends AppEngineTestCase {
 
-    private final AddService service = new AddService();
+    private final RssService service = new RssService();
 
     @Test
     public void データが登録される() throws Exception {
@@ -27,7 +27,7 @@ public class AddServiceTest extends AppEngineTestCase {
                 + "]";
         final UserRssDao dao = new UserRssDao();
         // Exercise
-        service.exec(user, jsonStr);
+        service.add(user, jsonStr);
         final List<UserRss> actual = dao.getByUser(user);
         // Verify
         assertThat(service, is(notNullValue()));

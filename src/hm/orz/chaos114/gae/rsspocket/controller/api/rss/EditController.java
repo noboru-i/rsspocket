@@ -1,7 +1,7 @@
 package hm.orz.chaos114.gae.rsspocket.controller.api.rss;
 
 import hm.orz.chaos114.gae.rsspocket.controller.BaseApiController;
-import hm.orz.chaos114.gae.rsspocket.service.rss.RssService;
+import hm.orz.chaos114.gae.rsspocket.service.rss.TagService;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,9 +9,9 @@ import org.slim3.controller.Navigation;
 
 import com.google.appengine.api.users.User;
 
-public class AddController extends BaseApiController {
+public class EditController extends BaseApiController {
 
-    private final RssService addService = new RssService();
+    private final TagService tagService = new TagService();
 
     @Override
     public Navigation run() throws Exception {
@@ -20,7 +20,7 @@ public class AddController extends BaseApiController {
         }
 
         final User user = requestScope("user");
-        addService.add(user, getBody());
+        tagService.edit(user, getBody());
 
         responseWriter(HttpServletResponse.SC_OK, "{}");
 
