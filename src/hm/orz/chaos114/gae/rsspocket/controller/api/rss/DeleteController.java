@@ -9,9 +9,9 @@ import org.slim3.controller.Navigation;
 
 import com.google.appengine.api.users.User;
 
-public class EditController extends BaseApiController {
+public class DeleteController extends BaseApiController {
 
-    private final TagService tagService = new TagService();
+    TagService tagService = new TagService();
 
     @Override
     public Navigation run() throws Exception {
@@ -21,7 +21,7 @@ public class EditController extends BaseApiController {
         }
 
         final User user = requestScope("user");
-        tagService.edit(user, getBody());
+        tagService.delete(user, getBody());
 
         responseWriter(HttpServletResponse.SC_OK, "{}");
 

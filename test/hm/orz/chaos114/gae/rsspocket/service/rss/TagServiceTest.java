@@ -56,6 +56,33 @@ public class TagServiceTest extends AppEngineTestCase {
         assertThat(actualRssFeedList.size(), is(2));
     }
 
+    @Test
+    public void 削除できる() throws Exception {
+        // SetUp
+        final User user = new User("test@example.com", "example.com");
+        final String jsonStr = "["
+                + "{'url':'http://sample.com/rss', 'tags':['test','test2']},"
+                + "{'url':'http://sample.com/rss2', 'tags':['hoge','hoge2']}"
+                + "]";
+        final String jsonStr2 = "["
+                + "{'url':'http://sample.com/rss', 'tags':['test','test2']}"
+                + "]";
+        final RssService rssService = new RssService();
+        final UserRssDao userRssDao = new UserRssDao();
+        rssService.add(user, jsonStr);
+        // Exercise
+        service.delete(user, jsonStr2);
+        final List<UserRss> actual = userRssDao.getByUser(user);
+        final List<RssFeed> actualRssFeedList = getAllRssFeed();
+        // Verify
+        assertThat(service, is(notNullValue()));
+        assertThat(actual.size(), is(1));
+        assertThat(actual.get(0).getUser(), is(user));
+        assertThat(actual.get(0).getRssFeed().getModel().getUrl(), is("http://sample.com/rss2"));
+        assertThat(actual.get(0).getTags(), is(hasItems("hoge", "hoge2")));
+        assertThat(actualRssFeedList.size(), is(2));
+    }
+
     public List<RssFeed> getAllRssFeed() {
         final RssFeedMeta meta = RssFeedMeta.get();
         return Datastore.query(meta).asList();

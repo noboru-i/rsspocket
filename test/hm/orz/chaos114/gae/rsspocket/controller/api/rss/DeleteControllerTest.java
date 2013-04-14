@@ -12,7 +12,7 @@ import javax.servlet.ServletInputStream;
 import org.junit.Test;
 import org.slim3.tester.ControllerTestCase;
 
-public class EditControllerTest extends ControllerTestCase {
+public class DeleteControllerTest extends ControllerTestCase {
 
     @Test
     public void run() throws Exception {
@@ -20,8 +20,8 @@ public class EditControllerTest extends ControllerTestCase {
         whenLoginBy("test@example.com", "999");
         tester.request.setInputStream(getStream());
         // Exercise
-        tester.start("/api/rss/edit");
-        final EditController controller = tester.getController();
+        tester.start("/api/rss/delete");
+        final DeleteController controller = tester.getController();
         // Verify
         assertThat(controller, is(notNullValue()));
         assertThat(tester.isRedirect(), is(false));
@@ -32,8 +32,8 @@ public class EditControllerTest extends ControllerTestCase {
         final String json = "";
         final ServletInputStream sis = new ServletInputStream() {
 
-            InputStream is = new ByteArrayInputStream(json.getBytes());
-
+            InputStream is =
+                    new ByteArrayInputStream(json.getBytes());
             @Override
             public int read() throws IOException {
                 return is.read();

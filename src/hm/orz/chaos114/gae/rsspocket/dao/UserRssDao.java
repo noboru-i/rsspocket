@@ -39,6 +39,18 @@ public class UserRssDao extends DaoBase<UserRss> {
     }
 
     /**
+     * 指定されたユーザ・URLのUserRssオブジェクトを取得する。
+     * 
+     * @param user 取得したいユーザ情報
+     * @param url 取得したいURL
+     * @return UserRssオブジェクト
+     */
+    public UserRss get(final User user, final String url) {
+        final Key key = createKey(user.getEmail(), url);
+        return get(key);
+    }
+
+    /**
      * 指定されたユーザのRSS一覧を取得する。
      * 
      * @param user 取得したいユーザ情報
@@ -50,6 +62,35 @@ public class UserRssDao extends DaoBase<UserRss> {
                 Datastore.query(e).filter(e.user.equal(user)).asList();
 
         return userRssList;
+    }
+
+    @Override
+    public void delete(final Key key) {
+        // 利用しないため未実装
+        throw new UnsupportedOperationException("未実装");
+    }
+
+    @Override
+    public void delete(final List<Key> keys) {
+        // 利用しないため未実装
+        throw new UnsupportedOperationException("未実装");
+    }
+
+    @Override
+    public Future<Void> deleteAsync(final Key key) {
+        // 利用しないため未実装
+        throw new UnsupportedOperationException("未実装");
+    }
+
+    @Override
+    public Future<Void> deleteAsync(final List<Key> keys) {
+        // 利用しないため未実装
+        throw new UnsupportedOperationException("未実装");
+    }
+
+    public Future<Void> deleteAsync(final UserRss model) {
+        final Key key = createKey(model);
+        return Datastore.deleteAsync(key);
     }
 
     /**
@@ -66,6 +107,10 @@ public class UserRssDao extends DaoBase<UserRss> {
     private Key createKey(final UserRss userRss) {
         final String email = userRss.getUser().getEmail();
         final String url = userRss.getRssFeed().getModel().getUrl();
+        return createKey(email, url);
+    }
+
+    private Key createKey(final String email, final String url) {
         return Datastore.createKey(UserRss.class, email + url);
     }
 }

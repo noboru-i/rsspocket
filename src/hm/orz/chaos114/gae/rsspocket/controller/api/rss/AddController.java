@@ -16,7 +16,8 @@ public class AddController extends BaseApiController {
     @Override
     public Navigation run() throws Exception {
         if (!isPost()) {
-            throw new UnsupportedOperationException();
+            response.setStatus(404);
+            return null;
         }
 
         final User user = requestScope("user");
