@@ -5,11 +5,12 @@ import java.util.Date;
 
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
+import org.slim3.datastore.ModelRef;
 
 import com.google.appengine.api.datastore.Key;
 
 @Model(schemaVersion = 1)
-public class RssFeed implements Serializable {
+public class Feeds implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -19,22 +20,15 @@ public class RssFeed implements Serializable {
     @Attribute(version = true)
     private Long version;
 
-    private String url;
+    private final ModelRef<RssFeed> rssFeed = new ModelRef<>(RssFeed.class);
 
     private String title;
 
-    private String siteUrl;
+    private String link;
 
-    private Date latestPublishedDate;
+    private String description;
 
-    public RssFeed() {
-        latestPublishedDate = new Date(0);
-    }
-
-    public RssFeed(final String url) {
-        this.url = url;
-        latestPublishedDate = new Date(0);
-    }
+    private Date publishedDate;
 
     /**
      * Returns the key.
@@ -74,12 +68,8 @@ public class RssFeed implements Serializable {
         this.version = version;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(final String url) {
-        this.url = url;
+    public ModelRef<RssFeed> getRssFeed() {
+        return rssFeed;
     }
 
     public String getTitle() {
@@ -90,20 +80,28 @@ public class RssFeed implements Serializable {
         this.title = title;
     }
 
-    public String getSiteUrl() {
-        return siteUrl;
+    public String getLink() {
+        return link;
     }
 
-    public void setSiteUrl(final String siteUrl) {
-        this.siteUrl = siteUrl;
+    public void setLink(final String link) {
+        this.link = link;
     }
 
-    public Date getLatestPublishedDate() {
-        return latestPublishedDate;
+    public String getDescription() {
+        return description;
     }
 
-    public void setLatestPublishedDate(final Date latestPublishedDate) {
-        this.latestPublishedDate = latestPublishedDate;
+    public void setDescription(final String description) {
+        this.description = description;
+    }
+
+    public Date getPublishedDate() {
+        return publishedDate;
+    }
+
+    public void setPublishedDate(final Date publishedDate) {
+        this.publishedDate = publishedDate;
     }
 
     @Override
@@ -125,7 +123,7 @@ public class RssFeed implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final RssFeed other = (RssFeed) obj;
+        final Feeds other = (Feeds) obj;
         if (key == null) {
             if (other.key != null) {
                 return false;

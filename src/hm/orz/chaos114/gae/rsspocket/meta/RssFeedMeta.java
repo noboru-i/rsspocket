@@ -1,11 +1,20 @@
 package hm.orz.chaos114.gae.rsspocket.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2013-04-08 23:57:17")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2013-04-16 00:42:45")
 /** */
 public final class RssFeedMeta extends org.slim3.datastore.ModelMeta<hm.orz.chaos114.gae.rsspocket.model.RssFeed> {
 
     /** */
     public final org.slim3.datastore.CoreAttributeMeta<hm.orz.chaos114.gae.rsspocket.model.RssFeed, com.google.appengine.api.datastore.Key> key = new org.slim3.datastore.CoreAttributeMeta<hm.orz.chaos114.gae.rsspocket.model.RssFeed, com.google.appengine.api.datastore.Key>(this, "__key__", "key", com.google.appengine.api.datastore.Key.class);
+
+    /** */
+    public final org.slim3.datastore.CoreAttributeMeta<hm.orz.chaos114.gae.rsspocket.model.RssFeed, java.util.Date> latestPublishedDate = new org.slim3.datastore.CoreAttributeMeta<hm.orz.chaos114.gae.rsspocket.model.RssFeed, java.util.Date>(this, "latestPublishedDate", "latestPublishedDate", java.util.Date.class);
+
+    /** */
+    public final org.slim3.datastore.StringAttributeMeta<hm.orz.chaos114.gae.rsspocket.model.RssFeed> siteUrl = new org.slim3.datastore.StringAttributeMeta<hm.orz.chaos114.gae.rsspocket.model.RssFeed>(this, "siteUrl", "siteUrl");
+
+    /** */
+    public final org.slim3.datastore.StringAttributeMeta<hm.orz.chaos114.gae.rsspocket.model.RssFeed> title = new org.slim3.datastore.StringAttributeMeta<hm.orz.chaos114.gae.rsspocket.model.RssFeed>(this, "title", "title");
 
     /** */
     public final org.slim3.datastore.StringAttributeMeta<hm.orz.chaos114.gae.rsspocket.model.RssFeed> url = new org.slim3.datastore.StringAttributeMeta<hm.orz.chaos114.gae.rsspocket.model.RssFeed>(this, "url", "url");
@@ -31,6 +40,9 @@ public final class RssFeedMeta extends org.slim3.datastore.ModelMeta<hm.orz.chao
     public hm.orz.chaos114.gae.rsspocket.model.RssFeed entityToModel(com.google.appengine.api.datastore.Entity entity) {
         hm.orz.chaos114.gae.rsspocket.model.RssFeed model = new hm.orz.chaos114.gae.rsspocket.model.RssFeed();
         model.setKey(entity.getKey());
+        model.setLatestPublishedDate((java.util.Date) entity.getProperty("latestPublishedDate"));
+        model.setSiteUrl((java.lang.String) entity.getProperty("siteUrl"));
+        model.setTitle((java.lang.String) entity.getProperty("title"));
         model.setUrl((java.lang.String) entity.getProperty("url"));
         model.setVersion((java.lang.Long) entity.getProperty("version"));
         return model;
@@ -45,6 +57,9 @@ public final class RssFeedMeta extends org.slim3.datastore.ModelMeta<hm.orz.chao
         } else {
             entity = new com.google.appengine.api.datastore.Entity(kind);
         }
+        entity.setProperty("latestPublishedDate", m.getLatestPublishedDate());
+        entity.setProperty("siteUrl", m.getSiteUrl());
+        entity.setProperty("title", m.getTitle());
         entity.setProperty("url", m.getUrl());
         entity.setProperty("version", m.getVersion());
         entity.setProperty("slim3.schemaVersion", 1);
@@ -113,6 +128,18 @@ public final class RssFeedMeta extends org.slim3.datastore.ModelMeta<hm.orz.chao
             writer.setNextPropertyName("key");
             encoder0.encode(writer, m.getKey());
         }
+        if(m.getLatestPublishedDate() != null){
+            writer.setNextPropertyName("latestPublishedDate");
+            encoder0.encode(writer, m.getLatestPublishedDate());
+        }
+        if(m.getSiteUrl() != null){
+            writer.setNextPropertyName("siteUrl");
+            encoder0.encode(writer, m.getSiteUrl());
+        }
+        if(m.getTitle() != null){
+            writer.setNextPropertyName("title");
+            encoder0.encode(writer, m.getTitle());
+        }
         if(m.getUrl() != null){
             writer.setNextPropertyName("url");
             encoder0.encode(writer, m.getUrl());
@@ -131,6 +158,12 @@ public final class RssFeedMeta extends org.slim3.datastore.ModelMeta<hm.orz.chao
         org.slim3.datastore.json.Default decoder0 = new org.slim3.datastore.json.Default();
         reader = rootReader.newObjectReader("key");
         m.setKey(decoder0.decode(reader, m.getKey()));
+        reader = rootReader.newObjectReader("latestPublishedDate");
+        m.setLatestPublishedDate(decoder0.decode(reader, m.getLatestPublishedDate()));
+        reader = rootReader.newObjectReader("siteUrl");
+        m.setSiteUrl(decoder0.decode(reader, m.getSiteUrl()));
+        reader = rootReader.newObjectReader("title");
+        m.setTitle(decoder0.decode(reader, m.getTitle()));
         reader = rootReader.newObjectReader("url");
         m.setUrl(decoder0.decode(reader, m.getUrl()));
         reader = rootReader.newObjectReader("version");

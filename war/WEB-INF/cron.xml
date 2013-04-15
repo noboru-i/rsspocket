@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cronentries>
+  <cron>
+    <url>/cron/crawl</url>
+    <description>Crawl rss feeds and add to Pocket every 1 hour.</description>
+    <schedule>every 1 hours</schedule>
+  </cron>
+</cronentries>

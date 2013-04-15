@@ -127,6 +127,15 @@
             <role-name>admin</role-name>
         </auth-constraint>
     </security-constraint>
+    <!-- バッチ処理を外部から起動させない -->
+    <security-constraint>
+        <web-resource-collection>
+            <url-pattern>/cron/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
 
     <jsp-config>
         <jsp-property-group>

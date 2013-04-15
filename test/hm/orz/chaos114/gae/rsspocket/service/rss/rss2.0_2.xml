@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <atom:link rel="self" type="application/rss+xml" href="http://news.nicovideo.jp/ranking/hot?rss=2.0"/>
+    <title>総合 ホットランキング-ニコニコニュース</title>
+    <link>http://news.nicovideo.jp/ranking/hot</link>
+    <description>ニコニコニュースで取り上げている最新ニュースを提供しています。</description>
+    <pubDate>Mon, 15 Apr 2013 18:06:01 +0900</pubDate>
+    <lastBuildDate>Mon, 15 Apr 2013 18:06:01 +0900</lastBuildDate>
+    <generator>ニコニコニュース</generator>
+    <language>ja</language>
+    <copyright>(c) niwango, inc. All rights reserved.</copyright>
+    <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+    <item>
+      <title>“低視聴率女王”剛力彩芽『ビブリア』視聴率は「演ってるときから取れないと思ってた」</title>
+      <link>http://news.nicovideo.jp/watch/nw581962</link>
+      <pubDate>Sun, 14 Apr 2013 12:00:00 +0900</pubDate>
+      <guid>http://news.nicovideo.jp/watch/nw581962</guid>
+    </item>
+    <item>
+      <title>食用ハト流通禁止、殺処分の一方で職員「むさぼり食う」＝広東</title>
+      <link>http://news.nicovideo.jp/watch/nw582917</link>
+      <pubDate>Mon, 15 Apr 2013 12:02:45 +0900</pubDate>
+      <guid>http://news.nicovideo.jp/watch/nw582917</guid>
+    </item>
+    <item>
+      <title>若者用語？「つらたん」の意味と使い方</title>
+      <link>http://news.nicovideo.jp/watch/nw583206</link>
+      <pubDate>Mon, 15 Apr 2013 18:06:01 +0900</pubDate>
+      <guid>http://news.nicovideo.jp/watch/nw583206</guid>
+    </item>
+  </channel>
+</rss>

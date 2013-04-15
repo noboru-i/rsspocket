@@ -1,5 +1,6 @@
 package hm.orz.chaos114.gae.rsspocket.dao;
 
+import hm.orz.chaos114.gae.rsspocket.meta.RssFeedMeta;
 import hm.orz.chaos114.gae.rsspocket.model.RssFeed;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import org.slim3.datastore.Datastore;
 
 import com.google.appengine.api.datastore.Key;
 
-public class RssFeedDao extends DaoBase<RssFeed>{
+public class RssFeedDao extends DaoBase<RssFeed> {
 
     @Override
     public Key put(final RssFeed model) {
@@ -36,10 +37,18 @@ public class RssFeedDao extends DaoBase<RssFeed>{
         throw new UnsupportedOperationException("未実装");
     }
 
+    public List<RssFeed> getAll() {
+        final RssFeedMeta e = RssFeedMeta.get();
+        final List<RssFeed> rssFeedList = Datastore.query(e).asList();
+
+        return rssFeedList;
+    }
+
     /**
      * Keyが設定されていない場合は、設定されているUserからKeyを生成し、設定する。
      * 
-     * @param userInfo ユーザ情報モデル
+     * @param userInfo
+     *            ユーザ情報モデル
      */
     private void setKeyIfNull(final RssFeed rssFeed) {
         if (rssFeed.getKey() == null) {
