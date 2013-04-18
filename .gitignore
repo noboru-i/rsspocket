@@ -4,6 +4,7 @@ node_modules
 war/css
 war/js
 *.swp
+src/hm/orz/chaos114/gae/rsspocket/meta
 
 # secret keys #
 pocket.properties
