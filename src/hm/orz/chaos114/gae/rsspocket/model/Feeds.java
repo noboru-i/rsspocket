@@ -8,6 +8,7 @@ import org.slim3.datastore.Model;
 import org.slim3.datastore.ModelRef;
 
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.Text;
 
 @Model(schemaVersion = 1)
 public class Feeds implements Serializable {
@@ -26,7 +27,7 @@ public class Feeds implements Serializable {
 
     private String link;
 
-    private String description;
+    private Text description;
 
     private Date publishedDate;
 
@@ -88,11 +89,11 @@ public class Feeds implements Serializable {
         this.link = link;
     }
 
-    public String getDescription() {
+    public Text getDescription() {
         return description;
     }
 
-    public void setDescription(final String description) {
+    public void setDescription(final Text description) {
         this.description = description;
     }
 

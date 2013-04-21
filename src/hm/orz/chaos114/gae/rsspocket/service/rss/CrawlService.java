@@ -20,6 +20,7 @@ import pocket4j.action.add.AddAction;
 import pocket4j.auth.Authorization;
 import pocket4j.conf.Configuration;
 
+import com.google.appengine.api.datastore.Text;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.FeedException;
@@ -42,12 +43,17 @@ public class CrawlService {
         }
     }
 
-    public void crawl(final RssFeed rssFeed) throws IOException, FeedException {
+    public void crawl(final RssFeed rssFeed) throws FeedException {
         final String url = rssFeed.getUrl();
 
-        final URL feedUrl = new URL(url);
         final SyndFeedInput input = new SyndFeedInput();
-        final SyndFeed feed = input.build(new XmlReader(feedUrl));
+        SyndFeed feed;
+        try {
+            feed = input.build(new XmlReader(new URL(url)));
+        } catch (final IOException e) {
+            // 例外発生時は該当rssに対する処理終了
+            return;
+        }
         // サイトのタイトル
         rssFeed.setTitle(feed.getTitle());
         // サイトのURL
@@ -66,7 +72,7 @@ public class CrawlService {
             model.setLink(entry.getLink());
             // 記事の詳細
             if (entry.getDescription() != null) {
-                model.setDescription(entry.getDescription().getValue());
+                model.setDescription(new Text(entry.getDescription().getValue()));
             }
             // 記事の公開日
             model.setPublishedDate(entry.getPublishedDate());
