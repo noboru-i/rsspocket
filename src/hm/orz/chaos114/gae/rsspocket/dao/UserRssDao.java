@@ -1,9 +1,12 @@
 package hm.orz.chaos114.gae.rsspocket.dao;
 
 import hm.orz.chaos114.gae.rsspocket.meta.UserRssMeta;
+import hm.orz.chaos114.gae.rsspocket.model.RssFeed;
 import hm.orz.chaos114.gae.rsspocket.model.UserRss;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 import org.slim3.datastore.DaoBase;
@@ -61,6 +64,29 @@ public class UserRssDao extends DaoBase<UserRss> {
         final List<UserRss> userRssList =
                 Datastore.query(e).filter(e.user.equal(user)).asList();
 
+        return userRssList;
+    }
+
+    /**
+     * 指定したRSSを登録しているユーザを取得する。
+     * 
+     * @param url 取得したいRSS情報
+     * @return ユーザ一覧
+     */
+    public List<UserRss> getByRss(final String url) {
+        final RssFeed rssFeed = new RssFeed(url);
+        final RssFeedDao rssFeedDao = new RssFeedDao();
+        final Future<Key> future = rssFeedDao.putAsync(rssFeed);
+        final UserRssMeta e = UserRssMeta.get();
+        List<UserRss> userRssList;
+        try {
+            userRssList =
+                    Datastore.query(e).filter(e.rssFeed.equal(future.get()))
+                    .asList();
+        } catch (NullPointerException | InterruptedException
+                | ExecutionException e1) {
+            return new ArrayList<>();
+        }
         return userRssList;
     }
 

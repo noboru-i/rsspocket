@@ -22,6 +22,7 @@ import com.google.appengine.labs.repackaged.org.json.JSONObject;
 public class Pocket implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    public static final String URL_V3_ADD = "https://getpocket.com/v3/add";
     public static final String URL_V3_GET = "https://getpocket.com/v3/get";
     public static final String URL_V3_SEND = "https://getpocket.com/v3/send";
 
@@ -78,6 +79,13 @@ public class Pocket implements Serializable {
         }
 
         return HttpRequestUtil.postJson(url, params);
+    }
+
+    public void add(final Action action) throws IOException {
+
+        postRequest(URL_V3_ADD, action);
+
+        // TODO 後処理
     }
 
     public List<Item> retrieve(final RetrieveAction action) throws IOException {

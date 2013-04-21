@@ -109,6 +109,23 @@ public class UserRssDaoTest extends AppEngineTestCase {
         assertThat(list2.get(0).getRssFeed().getModel().getUrl(), is("http://sample.com/rss"));
     }
 
+    @Test
+    public void getByRssで2件取得できる() throws Exception {
+        // SetUp
+        final String url = "http://sample.com/rss";
+        final User sampleUser = new User("test@example.com", "example.com");
+        final User sampleUser2 = new User("test2@example.com", "example.com");
+        final UserRss userRss = create(sampleUser, url, new String[]{"test", "test2"});
+        final UserRss userRss2 = create(sampleUser2, url, new String[]{"hoge", "hoge2"});
+        dao.putAsync(userRss).get();
+        dao.putAsync(userRss2).get();
+        // Exercise
+        final List<UserRss> actual = dao.getByRss(url);
+        // Verify
+        assertThat(actual, is(notNullValue()));
+        assertThat(actual.size(), is(2));
+    }
+
     private UserRss create(final User user, final String url, final String[] tags) {
         final UserRss userRss = new UserRss();
         userRss.setUser(user);
@@ -124,8 +141,7 @@ public class UserRssDaoTest extends AppEngineTestCase {
     }
 
     private RssFeed createRssFeed(final String url) {
-        final RssFeed rssFeed = new RssFeed();
-        rssFeed.setUrl(url);
+        final RssFeed rssFeed = new RssFeed(url);
         final RssFeedDao rssFeedDao = new RssFeedDao();
         rssFeedDao.put(rssFeed);
 
