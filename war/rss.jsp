@@ -15,9 +15,10 @@
 <jsp:include page="/include/navbar.jsp" />
 
 <div class="container">
-	<table class="table table-striped">
+	<table class="table">
 		<tr>
 			<th>一括</th>
+			<th>タイトル</th>
 			<th>URL</th>
 			<th>タグ</th>
 			<th>操作</th>
@@ -34,6 +35,7 @@
 						<input type="checkbox" id="edit_${status.index}" data-id="${status.index}" class="check_edit">
 					</label>
 				</td>
+				<td id="title_${status.index}">${userRss.rssFeed.model.title}</td>
 				<td id="url_${status.index}">${userRss.rssFeed.model.url}</td>
 				<td>
 					<c:forEach var="tag" items="${userRss.tags}" varStatus="tagStatus">
@@ -50,13 +52,19 @@
 				</td>
 				<td>
 					<a href="javascript:void(0);" class="btn btn-info" onClick="Rss.edit(${status.index})">
-						<i class="icon-plus-sign icon-white"></i> 編集
+						<i class="icon-edit icon-white"></i> 編集
 					</a>
 					<a href="javascript:void(0);" class="btn btn-danger" onClick="Rss.delete(${status.index})">
-						<i class="icon-minus-sign icon-white"></i> 削除
+						<i class="icon-trash icon-white"></i> 削除
 					</a>
 				</td>
 			</tr>
+			<c:forEach var="feeds" items="${feedsList[userRss]}" >
+			<tr>
+				<td></td>
+				<td colspan="4"><a href="${feeds.link}">${feeds.title}</a></td>
+			</tr>
+			</c:forEach>
 		</c:forEach>
 	</table>
 	

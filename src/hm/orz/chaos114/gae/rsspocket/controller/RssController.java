@@ -1,9 +1,13 @@
 package hm.orz.chaos114.gae.rsspocket.controller;
 
+import hm.orz.chaos114.gae.rsspocket.dao.FeedsDao;
 import hm.orz.chaos114.gae.rsspocket.dao.UserRssDao;
+import hm.orz.chaos114.gae.rsspocket.model.Feeds;
 import hm.orz.chaos114.gae.rsspocket.model.UserRss;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
@@ -12,13 +16,21 @@ import com.google.appengine.api.users.User;
 
 public class RssController extends Controller {
 
+    UserRssDao dao = new UserRssDao();
+    FeedsDao feedsDao = new FeedsDao();
+
     @Override
     public Navigation run() throws Exception {
 
         final User user = requestScope("user");
-        final UserRssDao dao = new UserRssDao();
         final List<UserRss> userRssList = dao.getByUser(user);
+        final Map<UserRss, List<Feeds>> map = new HashMap<>();
+        for (final UserRss userRss : userRssList) {
+            final List<Feeds> feedsList = feedsDao.getList(userRss.getRssFeed().getModel(), 0, 10);
+            map.put(userRss, feedsList);
+        }
         requestScope("userRssList", userRssList);
+        requestScope("feedsList", map);
 
         return forward("rss.jsp");
     }
