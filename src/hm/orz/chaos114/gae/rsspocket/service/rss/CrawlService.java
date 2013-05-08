@@ -80,7 +80,6 @@ public class CrawlService {
             if (rssFeed.getLatestPublishedDate().compareTo(
                     entry.getPublishedDate()) < 0) {
                 // 前回保存した時点より新しい記事
-                rssFeed.setLatestPublishedDate(entry.getPublishedDate());
                 newEntries.add(model);
                 if (newLatestPublishedDate.compareTo(entry.getPublishedDate()) < 0) {
                     // entries内の一番新しい日時を保存
