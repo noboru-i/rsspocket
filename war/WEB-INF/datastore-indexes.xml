@@ -1,0 +1,11 @@
+<!-- Indices written at Thu, 25 Apr 2013 01:51:59 JST -->
+
+<datastore-indexes autoGenerate="false">
+
+    <!-- Used 72 times in query history -->
+    <datastore-index kind="Feeds" ancestor="false" source="auto">
+        <property name="rssFeed" direction="asc"/>
+        <property name="publishedDate" direction="desc"/>
+    </datastore-index>
+
+</datastore-indexes>
