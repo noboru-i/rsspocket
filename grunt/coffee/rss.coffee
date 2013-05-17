@@ -1,19 +1,21 @@
 @Rss =
     add: (index) ->
+        return if $('#like_' + index + ' .addButton').hasClass('disabled')
+
         data = [@_getParam index]
-        console.log data
+        that = this
         callback = (data) ->
-            console.log data
+            that._disableAddButton index
         $.post '/api/rss/add', JSON.stringify(data), callback
 
     builkAdd: () ->
         that = this
-        data = $.makeArray $('table .check_regist:checked').map () ->
+        checkedItems = $.makeArray $('table .check_regist:checked').map () ->
             that._getParam $(this).data('id')
-        console.log data
         callback = (data) ->
-            console.log data
-        $.post '/api/rss/add', JSON.stringify(data), callback
+            for item in checkedItems
+                that._disableAddButton item.index
+        $.post '/api/rss/add', JSON.stringify(checkedItems), callback
 
     edit: (index) ->
         data = [@_getParam index]
@@ -32,7 +34,12 @@
                 .filter(() -> return $(this).val() != '')
                 .map(() -> return $(this).val())
         data =
+            index: index,
             url: $('#url_' + index).text(),
             tags: tags
         data
 
+    _disableAddButton: (index) ->
+        $('#like_' + index + ' .addButton')
+            .addClass('disabled')
+            .removeClass('btn-success')

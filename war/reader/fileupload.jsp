@@ -51,7 +51,7 @@
 					</c:forEach>
 				</td>
 				<td>
-					<a href="javascript:void(0);" class="btn btn-success" onClick="Rss.add(${status.index})">
+					<a href="javascript:void(0);" class="btn btn-success addButton" onClick="Rss.add(${status.index})">
 						<i class="icon-plus-sign icon-white"></i> 登録
 					</a>
 				</td>
