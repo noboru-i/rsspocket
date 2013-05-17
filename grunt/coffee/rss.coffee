@@ -27,6 +27,7 @@
         data = [@_getParam index]
         callback = (data) ->
             console.log data
+            $('#like_' + index).remove()
         $.post '/api/rss/delete', JSON.stringify(data), callback
 
     _getParam: (index) ->

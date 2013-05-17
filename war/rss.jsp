@@ -54,7 +54,7 @@
 					<a href="javascript:void(0);" class="btn btn-info" onClick="Rss.edit(${status.index})">
 						<i class="icon-edit icon-white"></i> 編集
 					</a>
-					<a href="javascript:void(0);" class="btn btn-danger" onClick="Rss.delete(${status.index})">
+					<a href="#deleteConfirm" role="button" data-toggle="modal" class="btn btn-danger" onClick="$('#deleteConfirm .btn-primary').data('id', ${status.index});">
 						<i class="icon-trash icon-white"></i> 削除
 					</a>
 				</td>
@@ -73,6 +73,19 @@
 	</div>
 
 	<!-- Modal -->
+	<div id="deleteConfirm" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="deleteModalLabel">注意</h3>
+		</div>
+		<div class="modal-body">
+			<p>削除します。よろしいですか？</p>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" onClick="Rss.delete($(this).data('id'))">実行</button>
+		</div>
+	</div>
 	<div id="bulkConfirm" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="bulkModalLabel" aria-hidden="true">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
