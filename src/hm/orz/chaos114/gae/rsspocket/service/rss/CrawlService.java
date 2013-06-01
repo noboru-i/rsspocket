@@ -53,6 +53,8 @@ public class CrawlService {
         } catch (final IOException e) {
             // 例外発生時は該当rssに対する処理終了
             return;
+        } catch (final IllegalArgumentException e) {
+            return;
         }
         // サイトのタイトル
         rssFeed.setTitle(feed.getTitle());
@@ -77,7 +79,7 @@ public class CrawlService {
             // 記事の公開日
             model.setPublishedDate(entry.getPublishedDate());
 
-            if (rssFeed.getLatestPublishedDate().compareTo(
+            if (entry.getPublishedDate() != null && rssFeed.getLatestPublishedDate().compareTo(
                     entry.getPublishedDate()) < 0) {
                 // 前回保存した時点より新しい記事
                 newEntries.add(model);
