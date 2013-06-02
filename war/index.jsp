@@ -8,7 +8,9 @@
 	<link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link href="/css/rsspocket.css" rel="stylesheet">
 
-	<title>Index</title>
+	<title>Rss to Pocket</title>
+	
+	<jsp:include page="/include/track.jsp" />
 </head>
 <body>
 

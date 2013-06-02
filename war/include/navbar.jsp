@@ -7,6 +7,7 @@
 					<li class="active"><a href="/">Top</a></li>
 					<li><a href="/home">Home</a></li>
 					<li><a href="/rss">Rss</a></li>
+					<li><a href="/reader/fileupload">Upload</a></li>
 				</ul>
 				<c:choose>
 					<c:when test="${login}">
