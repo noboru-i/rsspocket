@@ -37,6 +37,11 @@ public class RssFeedDao extends DaoBase<RssFeed> {
         throw new UnsupportedOperationException("未実装");
     }
 
+    public RssFeed getByUrl(final String url) {
+        final Key key = createKey(url);
+        return get(key);
+    }
+
     public List<RssFeed> getAll() {
         final RssFeedMeta e = RssFeedMeta.get();
         final List<RssFeed> rssFeedList = Datastore.query(e).asList();

@@ -44,3 +44,24 @@
         $('#like_' + index + ' .addButton')
             .addClass('disabled')
             .removeClass('btn-success')
+
+    openFeed: (element) ->
+        url = $(element).data('url')
+        data = 
+            url: url
+        callback = (data) ->
+            results = data.results
+            $('.feedList').empty()
+            createList = (row) ->
+                $link = $('<a />').attr(
+                    'href': row.link
+                    'target': '_blank'
+                    ).addClass('btn').addClass('btn-link')
+                    .append(row.title)
+                $button = $('<a />')
+                $row = $('<tr />')
+                    .append($('<td />').append($link))
+                    .append($('<td />').append($button))
+                $('.feedList').append($row);
+            createList(row) for row in results
+        $.get '/api/rss/feed', data, callback
