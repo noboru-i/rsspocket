@@ -15,15 +15,17 @@ import com.google.appengine.api.users.User;
 import com.google.appengine.labs.repackaged.org.json.JSONArray;
 import com.google.appengine.labs.repackaged.org.json.JSONException;
 import com.google.appengine.labs.repackaged.org.json.JSONObject;
+import com.sun.syndication.io.FeedException;
 
 public class RssService {
+
+    final RssFeedDao rssFeedDao = new RssFeedDao();
+    final UserRssDao userRssDao = new UserRssDao();
+    final FeedsDao feedsDao = new FeedsDao();
 
     public void add(final User user, final String jsonStr) {
 
         final RssTagParameter[] addParameters = JSON.decode(jsonStr, RssTagParameter[].class);
-
-        final RssFeedDao rssFeedDao = new RssFeedDao();
-        final UserRssDao userRssDao = new UserRssDao();
 
         for (final RssTagParameter parameter : addParameters) {
             final RssFeed rssFeed = new RssFeed();
@@ -35,13 +37,17 @@ public class RssService {
             userRss.getRssFeed().setModel(rssFeed);
             userRss.setTags(parameter.getTags());
             userRssDao.put(userRss);
+
+            final CrawlService crawlService = new CrawlService();
+            try {
+                crawlService.crawl(rssFeed);
+            } catch (final FeedException e) {
+                // no-op
+            }
         }
     }
 
     public JSONArray getFeedsJson(final String url) {
-        final RssFeedDao rssFeedDao = new RssFeedDao();
-        final FeedsDao feedsDao = new FeedsDao();
-
         final RssFeed rssFeed = rssFeedDao.getByUrl(url);
         final List<Feeds> list = feedsDao.getList(rssFeed, 0, 50);
 
