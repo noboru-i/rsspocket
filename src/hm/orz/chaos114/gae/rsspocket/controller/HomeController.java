@@ -16,6 +16,8 @@ public class HomeController extends Controller {
     public Navigation run() throws Exception {
         final UserService userService = UserServiceFactory.getUserService();
         if (userService.isUserLoggedIn()) {
+            // ログイン済みの場合
+
             final User user = userService.getCurrentUser();
             // 認証情報の保存
             final UserInfoDao dao = new UserInfoDao();
@@ -25,6 +27,9 @@ public class HomeController extends Controller {
                 userInfo.setUser(user);
                 dao.putAsync(userInfo);
             }
+
+            // ログインユーザの情報を設定
+            requestScope("userInfo", userInfo);
         }
         return forward("home.jsp");
     }

@@ -57,6 +57,27 @@ public class HomeControllerTest extends ControllerTestCase {
         assertThat(userInfo.getUser(), is(user));
     }
 
+    @Test
+    public void 認証済みかつPocket認証済み() throws Exception {
+        // SetUp
+        final User user = new User("example@gmail.com", "gmail.com");
+        final UserInfoDao userInfoDao = new UserInfoDao();
+        final UserInfo userInfo = new UserInfo();
+        userInfo.setUser(user);
+        userInfo.setPocketAccessToken("hogehoge");
+        userInfoDao.put(userInfo);
+        whenLoginBy("example@gmail.com", "999");
+        // Exercise
+        tester.start("/home");
+        // Verify
+        final HomeController controller = tester.getController();
+        assertThat(controller, is(notNullValue()));
+        assertThat(tester.isRedirect(), is(false));
+        assertThat(tester.getDestinationPath(), is("/home.jsp"));
+        final UserInfo userInfo2 = tester.requestScope("userInfo");
+        assertThat(userInfo2, is(userInfo));
+    }
+
     private static final String KEY_USER_ID =
             "com.google.appengine.api.users.UserService.user_id_key";
 
