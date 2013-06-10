@@ -3,7 +3,9 @@ package hm.orz.chaos114.gae.rsspocket.service.rss;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import static org.junit.matchers.JUnitMatchers.*;
+import hm.orz.chaos114.gae.rsspocket.dao.UserInfoDao;
 import hm.orz.chaos114.gae.rsspocket.dao.UserRssDao;
+import hm.orz.chaos114.gae.rsspocket.model.UserInfo;
 import hm.orz.chaos114.gae.rsspocket.model.UserRss;
 
 import java.util.List;
@@ -21,6 +23,7 @@ public class RssServiceTest extends AppEngineTestCase {
     public void データが登録される() throws Exception {
         // SetUp
         final User user = new User("test@example.com", "example.com");
+        createUserInfo(user);
         final String jsonStr = "["
                 + "{'url':'http://sample.com/rss', 'tags':['test','test2']},"
                 + "{'url':'http://sample.com/rss2', 'tags':['hoge','hoge2']}"
@@ -38,5 +41,12 @@ public class RssServiceTest extends AppEngineTestCase {
         assertThat(actual.get(1).getUser(), is(user));
         assertThat(actual.get(1).getRssFeed().getModel().getUrl(), is("http://sample.com/rss2"));
         assertThat(actual.get(1).getTags(), is(hasItems("hoge", "hoge2")));
+    }
+
+    private void createUserInfo(final User user) {
+        final UserInfo userInfo = new UserInfo();
+        userInfo.setUser(user);
+        final UserInfoDao userInfoDao = new UserInfoDao();
+        userInfoDao.put(userInfo);
     }
 }

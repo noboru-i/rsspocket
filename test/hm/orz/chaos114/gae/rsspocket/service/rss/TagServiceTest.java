@@ -3,9 +3,11 @@ package hm.orz.chaos114.gae.rsspocket.service.rss;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import static org.junit.matchers.JUnitMatchers.*;
+import hm.orz.chaos114.gae.rsspocket.dao.UserInfoDao;
 import hm.orz.chaos114.gae.rsspocket.dao.UserRssDao;
 import hm.orz.chaos114.gae.rsspocket.meta.RssFeedMeta;
 import hm.orz.chaos114.gae.rsspocket.model.RssFeed;
+import hm.orz.chaos114.gae.rsspocket.model.UserInfo;
 import hm.orz.chaos114.gae.rsspocket.model.UserRss;
 
 import java.util.List;
@@ -29,6 +31,7 @@ public class TagServiceTest extends AppEngineTestCase {
     public void 編集できる() throws Exception {
         // SetUp
         final User user = new User("test@example.com", "example.com");
+        createUserInfo(user);
         final String jsonStr = "["
                 + "{'url':'http://sample.com/rss', 'tags':['test','test2']},"
                 + "{'url':'http://sample.com/rss2', 'tags':['hoge','hoge2']}"
@@ -60,6 +63,7 @@ public class TagServiceTest extends AppEngineTestCase {
     public void 削除できる() throws Exception {
         // SetUp
         final User user = new User("test@example.com", "example.com");
+        createUserInfo(user);
         final String jsonStr = "["
                 + "{'url':'http://sample.com/rss', 'tags':['test','test2']},"
                 + "{'url':'http://sample.com/rss2', 'tags':['hoge','hoge2']}"
@@ -86,5 +90,12 @@ public class TagServiceTest extends AppEngineTestCase {
     public List<RssFeed> getAllRssFeed() {
         final RssFeedMeta meta = RssFeedMeta.get();
         return Datastore.query(meta).asList();
+    }
+
+    private void createUserInfo(final User user) {
+        final UserInfo userInfo = new UserInfo();
+        userInfo.setUser(user);
+        final UserInfoDao userInfoDao = new UserInfoDao();
+        userInfoDao.put(userInfo);
     }
 }

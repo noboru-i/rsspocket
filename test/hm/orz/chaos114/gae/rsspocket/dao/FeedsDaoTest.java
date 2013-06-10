@@ -24,11 +24,11 @@ public class FeedsDaoTest extends AppEngineTestCase {
     public void testCase() throws Exception {
         // SetUp
         final RssFeed rssFeed = putRssFeed("http://example.com/rss");
-        putFeed(rssFeed, "test1", "2013/01/01");
-        putFeed(rssFeed, "test2", "2013/01/02");
-        putFeed(rssFeed, "test3", "2013/01/03");
-        putFeed(rssFeed, "test4", "2013/01/04");
-        putFeed(rssFeed, "test5", "2013/01/05");
+        putFeed(rssFeed, "test1", "2013/01/01", "http://example.com/rss/1");
+        putFeed(rssFeed, "test2", "2013/01/02", "http://example.com/rss/2");
+        putFeed(rssFeed, "test3", "2013/01/03", "http://example.com/rss/3");
+        putFeed(rssFeed, "test4", "2013/01/04", "http://example.com/rss/4");
+        putFeed(rssFeed, "test5", "2013/01/05", "http://example.com/rss/5");
         // Exercise
         final List<Feeds> actual = dao.getList(rssFeed, 0, 4);
         // Verify
@@ -46,12 +46,13 @@ public class FeedsDaoTest extends AppEngineTestCase {
         return rssFeed;
     }
 
-    private void putFeed(final RssFeed rssFeed, final String title, final String dateStr) throws Exception {
+    private void putFeed(final RssFeed rssFeed, final String title, final String dateStr, final String link) throws Exception {
 
         final Feeds feeds = new Feeds();
         feeds.getRssFeed().setModel(rssFeed);
         feeds.setTitle(title);
         feeds.setPublishedDate(new SimpleDateFormat("yyyy/MM/dd").parse(dateStr));
+        feeds.setLink(link);
         dao.put(feeds);
     }
 }

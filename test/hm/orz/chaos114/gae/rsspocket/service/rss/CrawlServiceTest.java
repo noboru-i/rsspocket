@@ -70,6 +70,7 @@ public class CrawlServiceTest extends AppEngineTestCase {
         final RssFeed rssFeed = new RssFeed(url);
         final Future<Key> future = dao.putAsync(rssFeed);
         future.get();
+        rssFeed.setKey(future.get());
         return rssFeed;
     }
 }
