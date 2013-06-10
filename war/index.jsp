@@ -18,20 +18,10 @@
 
 <div class="container">
 
-	<c:if test="${error == 'no_login'}">
-		<h1>ログインしてください。</h1>
-	</c:if>
-	<c:choose>
-		<c:when test="${login}">
-			<h1>Hello ${f:h(user.email)} !!!</h1>
-			<a href="${logoutUrl}" class="btn btn-primary btn-large">logout</a>
-			
-			<a href="/home" class="btn btn-primary btn-large">home</a>
-		</c:when>
-		<c:otherwise>
-			<a href="${loginUrl}" class="btn btn-primary btn-large">login</a>
-		</c:otherwise>
-	</c:choose>
+	<div class="hero-unit">
+		<h1>Rss to Pocket</h1>
+		<p>新着のRSSをPocketに自動保存</p>
+		<a href="${loginUrl}" class="btn btn-primary btn-large">Googleのアカウントでログイン</a>
 	</div>
 </div>
 

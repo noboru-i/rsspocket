@@ -18,11 +18,11 @@
 <jsp:include page="/include/navbar.jsp" />
 
 <div class="container">
-	<h1>Hello ${f:h(user.email)} !!!</h1>
-	<a href="${logoutUrl}" class="btn btn-primary btn-large">logout</a>
-	
-	<a href="/reader/fileupload" class="btn btn-primary btn-large">file upload</a>
-	<a href="/pocket/auth" class="btn btn-primary btn-large">Login to Pocket</a>
+	<div class="hero-unit">
+		<h1>ようこそ！</h1>
+		<p>次は、Pocketのアカウント認証を行なってください。</p>
+		<a href="/pocket/auth" class="btn btn-primary btn-large">Pocketでログイン</a>
+	</div>
 </div>
 
 </body>

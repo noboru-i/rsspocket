@@ -16,11 +16,6 @@
 							<a href="${logoutUrl}">ログアウト</a>
 						</div>
 					</c:when>
-					<c:otherwise>
-						<div class="navbar-form pull-right">
-							<a href="${loginUrl}" class="btn btn-primary">Sign in with Google »</a>
-						</div>
-					</c:otherwise>
 				</c:choose>
 			</div>
 		</div>
