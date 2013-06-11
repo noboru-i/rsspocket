@@ -32,18 +32,19 @@ public class RssService {
             rssFeed.setUrl(parameter.getUrl());
             rssFeedDao.put(rssFeed);
 
-            final UserRss userRss = new UserRss();
-            userRss.setUser(user);
-            userRss.getRssFeed().setModel(rssFeed);
-            userRss.setTags(parameter.getTags());
-            userRssDao.put(userRss);
-
             final CrawlService crawlService = new CrawlService();
             try {
                 crawlService.crawl(rssFeed);
             } catch (final FeedException e) {
                 // no-op
             }
+
+            // crawl終了後に登録（初回のcrawlではPocketに登録しない）
+            final UserRss userRss = new UserRss();
+            userRss.setUser(user);
+            userRss.getRssFeed().setModel(rssFeed);
+            userRss.setTags(parameter.getTags());
+            userRssDao.put(userRss);
         }
     }
 
