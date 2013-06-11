@@ -47,22 +47,35 @@ public class RssService {
         }
     }
 
-    public JSONArray getFeedsJson(final String url) {
+    public JSONObject getFeedsJson(final String url) {
         final RssFeed rssFeed = rssFeedDao.getByUrl(url);
+        if (rssFeed == null) {
+            return null;
+        }
         final List<Feeds> list = feedsDao.getList(rssFeed, 0, 50);
+        final JSONObject result = new JSONObject();
 
-        final JSONArray array = new JSONArray();
         try {
+            // rss情報を設定
+            final JSONObject rssInfo = new JSONObject();
+            rssInfo.put("title", rssFeed.getTitle());
+            rssInfo.put("site_url", rssFeed.getSiteUrl());
+            rssInfo.put("url", rssFeed.getUrl());
+            result.put("rss", rssInfo);
+
+            // feed情報を設定
+            final JSONArray feedArray = new JSONArray();
             for (final Feeds feed : list) {
                 final JSONObject object = new JSONObject();
                 object.put("title", feed.getTitle());
                 object.put("link", feed.getLink());
-                array.put(object);
+                feedArray.put(object);
             }
+            result.put("feeds", feedArray);
         } catch (final JSONException e) {
             return null;
         }
 
-        return array;
+        return result;
     }
 }

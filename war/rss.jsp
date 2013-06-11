@@ -19,15 +19,21 @@
 <div class="container">
 	<div class="row">
 		<div class="span3 bs-docs-sidebar">
-			<ul class="nav nav-list bs-docs-sidenav">
+			<ul id="rss-list" class="nav nav-list bs-docs-sidenav">
 			<c:forEach var="userRss" items="${userRssList}" varStatus="status">
 				<li><a href="javascript:void(0);" data-url="${userRss.rssFeed.model.url}" onClick="Rss.openFeed(this)">${userRss.rssFeed.model.title}</a></li>
 			</c:forEach>
 			</ul>
 		</div>
 		<div class="span9">
-			<table class="table feedList">
-			</table>
+			<div id="feed-detail" class="hide">
+				<div class="bs-docs-example">
+					<a href="#" class="title" target="_blank"></a>
+					<a href="#" class="delete-button btn btn-danger" data-toggle="modal" data-target="#deleteConfirm" onClick="$('#deleteConfirm .btn-primary').data('url', $(this).data('url'));">削除</a>
+				</div>
+				<table class="table feedList">
+				</table>
+			</div>
 		</div>
 	</div>
 
@@ -42,7 +48,7 @@
 		</div>
 		<div class="modal-footer">
 			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-			<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" onClick="Rss.delete($(this).data('id'))">実行</button>
+			<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" onClick="Rss.delete($(this).data('url'))">実行</button>
 		</div>
 	</div>
 </div>

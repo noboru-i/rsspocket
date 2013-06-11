@@ -23,11 +23,12 @@
             console.log data
         $.post '/api/rss/edit', JSON.stringify(data), callback
 
-    delete: (index) ->
-        data = [@_getParam index]
+    delete: (url) ->
+        data = [{url: url}]
         callback = (data) ->
             console.log data
-            $('#like_' + index).remove()
+            $('#feed-detail').hide()
+            $('#rss-list [data-url=\'' + url + '\']').hide()
         $.post '/api/rss/delete', JSON.stringify(data), callback
 
     _getParam: (index) ->
@@ -50,7 +51,14 @@
         data = 
             url: url
         callback = (data) ->
-            results = data.results
+            $('#feed-detail').show()
+            $('#feed-detail .title')
+                .text(data.rss.title)
+                .attr('href', data.rss.site_url)
+            $('#feed-detail .delete-button')
+                .data('url', data.rss.url)
+            
+            results = data.feeds
             $('.feedList').empty()
             createList = (row) ->
                 $link = $('<a />').attr(
