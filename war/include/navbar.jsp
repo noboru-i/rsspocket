@@ -4,7 +4,7 @@
 			<a class="brand" href="/">Rss to Pocket</a>
 			<div class="nav-collapse collapse">
 				<ul class="nav">
-					<li class="active"><a href="/">Top</a></li>
+					<li><a href="/">Top</a></li>
 					<li><a href="/home">Home</a></li>
 					<li><a href="/rss">Rss</a></li>
 					<li><a href="/reader/fileupload">Upload</a></li>
