@@ -42,7 +42,7 @@ public class AuthFilter implements Filter {
 
         request.setAttribute("login", userService.isUserLoggedIn());
         request.setAttribute("user", userService.getCurrentUser());
-        request.setAttribute("loginUrl", userService.createLoginURL("/home"));
+        request.setAttribute("loginUrl", userService.createLoginURL("/rss"));
         request.setAttribute("logoutUrl", userService.createLogoutURL("/"));
         chain.doFilter(request, response);
     }
