@@ -8,6 +8,15 @@
             that._disableAddButton index
         $.post '/api/rss/add', JSON.stringify(data), callback
 
+    addByUrl: (url) ->
+        data = [@_getParam 0]
+        data[0].url = url
+        console.log data
+        callback = (data) ->
+            $('#addConfirm').modal('hide')
+            location.reload()
+        $.post '/api/rss/add', JSON.stringify(data), callback
+
     builkAdd: () ->
         that = this
         checkedItems = $.makeArray $('table .check_regist:checked').map () ->
@@ -47,6 +56,9 @@
             .removeClass('btn-success')
 
     openFeed: (element) ->
+        # activeクラスの付け替え
+        $(elm).removeClass('active') for elm in $(element).closest('ul').children()
+        $(element).parent().addClass('active')
         url = $(element).data('url')
         data = 
             url: url
