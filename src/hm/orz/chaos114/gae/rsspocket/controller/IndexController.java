@@ -12,7 +12,7 @@ public class IndexController extends Controller {
     public Navigation run() throws Exception {
         final UserService userService = UserServiceFactory.getUserService();
         if (userService.isUserLoggedIn()) {
-            return redirect("/rss");
+            return redirect("/home");
         }
 
         return forward("index.jsp");

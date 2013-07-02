@@ -6,6 +6,8 @@ war/js
 *.swp
 src/hm/orz/chaos114/gae/rsspocket/meta
 
+grunt/libs
+
 # secret keys #
 pocket.properties
 
