@@ -1,0 +1,16 @@
+{
+  "name": "rsspocket",
+  "version": "0.1.0",
+  "main": "app.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "lodash": "bestiejs/lodash",
+    "backbone": "latest",
+    "sass-bootstrap": "latest",
+    "jquery": "latest"
+  }
+}
