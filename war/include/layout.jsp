@@ -8,7 +8,7 @@
 	<link href="/css/responsive.css" rel="stylesheet">
 	<link href="/css/rsspocket.css" rel="stylesheet">
 
-	<title>${param.title} | Rss to Pocket</title>
+	<title>${param.title} | Rss to Pocket（α）</title>
 
 	<jsp:include page="/include/track.jsp" />
 </head>
@@ -22,5 +22,6 @@
 
 <script src="/js/libs.js"></script>
 <script src="/js/app.js"></script>
+${param.script}
 </body>
 </html>
