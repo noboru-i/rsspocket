@@ -12,7 +12,7 @@
 
 <div class="hero-unit" style="position: relative;">
 	<a href="https://github.com/noboru-i/rsspocket">
-	<img style="position: absolute; top: 0; right: 0; border: 0; z-index: 1031;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
+	<img style="position: absolute; top: 0; right: 0; border: 0; z-index: 1031;" src="/img/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
 	</a>
 
 	<h1>Rss to Pocket（α版）</h1>
