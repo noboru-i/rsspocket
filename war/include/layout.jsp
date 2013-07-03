@@ -3,6 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta property="og:url" content="http://rsspocket.appspot.com/">
+	<meta property="og:title" content="Rss to Pocket（α）" />
+	<meta property="og:description" content="新着のRSS　→　Pocketに自動保存" />
 
 	<link href="/css/bootstrap.css" rel="stylesheet">
 	<link href="/css/responsive.css" rel="stylesheet">
