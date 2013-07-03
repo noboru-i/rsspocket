@@ -10,7 +10,7 @@
   "dependencies": {
     "lodash": "bestiejs/lodash",
     "backbone": "latest",
-    "sass-bootstrap": "latest",
+    "bootstrap": "latest",
     "jquery": "latest"
   }
 }
