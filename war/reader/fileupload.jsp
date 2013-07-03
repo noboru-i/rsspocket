@@ -1,7 +1,6 @@
-<jsp:include page="/include/layout.jsp">
-	<jsp:param name="title" value="Rss"/>
-	<jsp:param name="content">
-		<jsp:attribute name="value">
+<c:import url="/include/layout.jsp">
+	<c:param name="title" value="Rss"/>
+	<c:param name="content">
 
 <form action="/reader/fileupload" method="post" enctype="multipart/form-data">
 	<input type="file" name="xmlfile">
@@ -65,6 +64,5 @@
 	</div>
 </div>
 
-		</jsp:attribute>
-	</jsp:param>
-</jsp:include>
+	</c:param>
+</c:import>

@@ -1,7 +1,6 @@
-<jsp:include page="/include/layout.jsp">
-	<jsp:param name="title" value="Index"/>
-	<jsp:param name="content">
-		<jsp:attribute name="value">
+<c:import url="/include/layout.jsp">
+	<c:param name="title" value="Index"/>
+	<c:param name="content">
 
 <div class="hero-unit">
 	<h1>Rss to Pocket</h1>
@@ -9,6 +8,5 @@
 	<a href="${loginUrl}" class="btn btn-primary btn-large">Googleのアカウントでログイン</a>
 </div>
 
-		</jsp:attribute>
-	</jsp:param>
-</jsp:include>
+	</c:param>
+</c:import>
