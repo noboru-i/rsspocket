@@ -72,4 +72,16 @@
 </div>
 
 	</c:param>
+	
+	<c:param name="script">
+
+<c:if test="${param.add == '1'}">
+<script>
+$(function(){
+	$('#addConfirm').modal('show');
+});
+</script>
+</c:if>
+
+	</c:param>
 </c:import>
