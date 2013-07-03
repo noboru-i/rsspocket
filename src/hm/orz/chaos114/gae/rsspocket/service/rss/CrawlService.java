@@ -14,6 +14,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import pocket4j.Pocket;
 import pocket4j.action.add.AddAction;
@@ -28,6 +29,7 @@ import com.sun.syndication.io.SyndFeedInput;
 import com.sun.syndication.io.XmlReader;
 
 public class CrawlService {
+    private final static Logger LOG = Logger.getLogger(CrawlService.class.getName());
 
     RssFeedDao rssFeedDao = new RssFeedDao();
     FeedsDao feedsDao = new FeedsDao();
@@ -54,6 +56,9 @@ public class CrawlService {
             // 例外発生時は該当rssに対する処理終了
             return;
         } catch (final IllegalArgumentException e) {
+            return;
+        } catch (final Exception e) {
+            LOG.severe("Exception:url=" + url + ",exception=" + e.getMessage());
             return;
         }
         // サイトのタイトル
