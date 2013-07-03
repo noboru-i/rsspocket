@@ -9,7 +9,21 @@ import org.slim3.tester.ControllerTestCase;
 public class RssControllerTest extends ControllerTestCase {
 
     @Test
-    public void run() throws Exception {
+    public void 未認証() throws Exception {
+        // TODO filterが呼び出せない
+        // SetUp
+        whenNotLogin();
+        // Exercise
+        tester.start("/rss");
+        final RssController controller = tester.getController();
+        // Verify
+        assertThat(controller, is(notNullValue()));
+        assertThat(tester.isRedirect(), is(false));
+        assertThat(tester.getDestinationPath(), is("/rss.jsp"));
+    }
+
+    @Test
+    public void 認証済み() throws Exception {
         // SetUp
         whenLoginBy("test@example.com", "999");
         // Exercise
@@ -31,9 +45,9 @@ public class RssControllerTest extends ControllerTestCase {
         tester.environment.getAttributes().put(KEY_USER_ID, userId);
     }
 
-    //    private void whenNotLogin() {
-    //        // ログアウト
-    //        tester.environment.setEmail(null);
-    //        tester.environment.getAttributes().remove(KEY_USER_ID);
-    //    }
+    private void whenNotLogin() {
+        // ログアウト
+        tester.environment.setEmail(null);
+        tester.environment.getAttributes().remove(KEY_USER_ID);
+    }
 }

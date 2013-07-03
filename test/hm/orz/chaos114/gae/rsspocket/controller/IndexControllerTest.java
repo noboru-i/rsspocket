@@ -19,7 +19,7 @@ public class IndexControllerTest extends ControllerTestCase {
     }
 
     @Test
-    public void 未認証のテスト() throws Exception {
+    public void 未認証() throws Exception {
         // SetUp
         whenNotLogin();
         // Exercise
@@ -29,10 +29,11 @@ public class IndexControllerTest extends ControllerTestCase {
         assertThat(controller, is(notNullValue()));
         assertThat(tester.isRedirect(), is(false));
         assertThat(tester.getDestinationPath(), is("/index.jsp"));
+        assertThat(tester.requestScope("loggedIn"), is(nullValue()));
     }
 
     @Test
-    public void 認証済みのテスト() throws Exception {
+    public void 認証済み() throws Exception {
         // SetUp
         final String email = "example@gmail.com";
         whenLoginBy(email, "999");
@@ -41,8 +42,24 @@ public class IndexControllerTest extends ControllerTestCase {
         // Verify
         final IndexController controller = tester.getController();
         assertThat(controller, is(notNullValue()));
-        assertThat(tester.isRedirect(), is(true));
-        assertThat(tester.getDestinationPath(), is("/home"));
+        assertThat(tester.isRedirect(), is(false));
+
+        assertThat((Boolean)tester.requestScope("loggedIn"), is(Boolean.TRUE));
+    }
+
+    @Test
+    public void エラーでリダイレクトされた場合() throws Exception {
+        // SetUp
+        whenNotLogin();
+        // Exercise
+        tester.param("error", "no_login");
+        tester.start("/");
+        // Verify
+        final IndexController controller = tester.getController();
+        assertThat(controller, is(notNullValue()));
+        assertThat(tester.isRedirect(), is(false));
+        assertThat(tester.getDestinationPath(), is("/index.jsp"));
+        assertThat(tester.requestScope("loggedIn"), is(nullValue()));
     }
 
     private static final String KEY_USER_ID =

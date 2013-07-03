@@ -2,6 +2,13 @@
 	<c:param name="title" value="Index"/>
 	<c:param name="content">
 
+	<c:if test="${param.error == 'no_login'}">
+		<div class="alert alert-error">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			ログインしてください。
+		</div>
+	</c:if>
+
 
 <div class="hero-unit" style="position: relative;">
 	<a href="https://github.com/noboru-i/rsspocket">
@@ -10,11 +17,13 @@
 
 	<h1>Rss to Pocket（α版）</h1>
 	<p>新着のRSS　→　Pocketに自動保存</p>
-	<p><a href="${loginUrl}" class="btn btn-primary btn-large">Googleのアカウントでログイン</a></p>
+	<c:if test="${not param.loggedIn}">
+		<p><a href="${loginUrl}" class="btn btn-primary btn-large">Googleのアカウントでログイン</a></p>
+	</c:if>
 	<div style="margin-top: 40px;">
 	<p>このページは開発途中です。<br />
 	当サイトの御利用につき、何らかのトラブルや損失・損害等につきましては一切責任を問わないものとします。</p>
-	<p>バグ・要望などは受け付けます。<br />
+	<p>バグ・要望などは募集中です。<br />
 	<a href="https://github.com/noboru-i/rsspocket">GitHub</a>にてIssueを登録して頂くか、
 	<a href="https://twitter.com/noboru_i">Twitter</a>にて御連絡ください。<br />
 	<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://rsspocket.appspot.com/" data-text="@noboru_i" data-lang="ja" data-size="large" data-count="none">ツイート</a>
