@@ -55,6 +55,7 @@ public class HomeControllerTest extends ControllerTestCase {
         assertThat(tester.isRedirect(), is(false));
         assertThat(tester.getDestinationPath(), is("/home.jsp"));
         assertThat(userInfo.getUser(), is(user));
+        assertThat((Boolean)tester.requestScope("loggedIn"), is(Boolean.TRUE));
     }
 
     @Test

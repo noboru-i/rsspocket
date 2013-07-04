@@ -1,5 +1,5 @@
 <c:import url="/include/layout.jsp">
-	<c:param name="title" value="Index"/>
+	<c:param name="title" value=""/>
 	<c:param name="content">
 
 	<c:if test="${param.error == 'no_login'}">
@@ -15,11 +15,12 @@
 	<img style="position: absolute; top: 0; right: 0; border: 0; z-index: 1031;" src="/img/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
 	</a>
 
-	<h1>Rss to Pocket（α版）</h1>
+	<h1>RocketSS（α版）</h1>
 	<p>新着のRSS　→　Pocketに自動保存</p>
-	<c:if test="${not param.loggedIn}">
+	<c:if test="${!loggedIn}">
 		<p><a href="${loginUrl}" class="btn btn-primary btn-large">Googleのアカウントでログイン</a></p>
 	</c:if>
+	<p><a href="/home" class="btn btn-info btn-large">詳しくはこちら <i class="icon-chevron-right icon-white"></i></a></p>
 	<div style="margin-top: 40px;">
 	<p>このページは開発途中です。<br />
 	当サイトの御利用につき、何らかのトラブルや損失・損害等につきましては一切責任を問わないものとします。</p>

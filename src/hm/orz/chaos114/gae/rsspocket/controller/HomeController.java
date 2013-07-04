@@ -17,6 +17,7 @@ public class HomeController extends Controller {
         final UserService userService = UserServiceFactory.getUserService();
         if (userService.isUserLoggedIn()) {
             // ログイン済みの場合
+            requestScope("loggedIn", true);
 
             final User user = userService.getCurrentUser();
             // 認証情報の保存

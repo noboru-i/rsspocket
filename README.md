@@ -1,4 +1,4 @@
-# RSS to Pocket
+# RocketSS
 
 ## To use
     cd grunt

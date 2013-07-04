@@ -12,7 +12,7 @@ public class IndexController extends Controller {
     public Navigation run() throws Exception {
         final UserService userService = UserServiceFactory.getUserService();
         if (userService.isUserLoggedIn()) {
-            requestScope("loggedIn", Boolean.TRUE);
+            requestScope("loggedIn", true);
         }
 
         return forward("index.jsp");

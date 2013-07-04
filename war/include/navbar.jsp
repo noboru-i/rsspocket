@@ -1,7 +1,7 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container">
-			<a class="brand" href="/">Rss to Pocket（α版）</a>
+			<a class="brand" href="/">RocketSS（α版）</a>
 			<div class="nav-collapse collapse">
 				<ul class="nav">
 					<li><a href="/">Top</a></li>

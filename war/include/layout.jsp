@@ -4,14 +4,21 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta property="og:url" content="http://rsspocket.appspot.com/">
-	<meta property="og:title" content="Rss to Pocket（α）" />
+	<meta property="og:title" content="RocketSS（α）" />
 	<meta property="og:description" content="新着のRSS　→　Pocketに自動保存" />
 
 	<link href="/css/bootstrap.css" rel="stylesheet">
 	<link href="/css/responsive.css" rel="stylesheet">
 	<link href="/css/rsspocket.css" rel="stylesheet">
 
-	<title>${param.title} | Rss to Pocket（α）</title>
+	<title>
+		<c:if test="${empty param.title}">
+			RocketSS（α） - RSSを自動でPocketに保存
+		</c:if>
+		<c:if test="${!empty param.title}">
+			${param.title} | RocketSS（α）
+		</c:if>
+	</title>
 
 	<jsp:include page="/include/track.jsp" />
 </head>
