@@ -87,6 +87,10 @@ public class Feeds implements Serializable {
 
     public void setLink(final String link) {
         this.link = link;
+        if (this.link != null && this.link.length() > 500) {
+            // 500文字を超えていた場合は切り捨て
+            this.link = this.link.substring(0, 500);
+        }
     }
 
     public Text getDescription() {
