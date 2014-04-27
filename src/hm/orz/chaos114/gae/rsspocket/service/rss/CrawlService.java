@@ -41,7 +41,11 @@ public class CrawlService {
     public void crawl() throws IOException, FeedException {
         final List<RssFeed> list = rssFeedDao.getAll();
         for (final RssFeed feed : list) {
-            crawl(feed);
+            try {
+                crawl(feed);
+            } catch (final Exception e) {
+                // no-op
+            }
         }
     }
 
@@ -59,7 +63,12 @@ public class CrawlService {
             return;
         } catch (final Exception e) {
             LOG.severe("Exception:url=" + url + ",exception=" + e.getMessage());
-            return;
+            final List<UserRss> list = userRssDao.getByRss(rssFeed.getUrl());
+            for (final UserRss userRss : list) {
+                userRssDao.deleteAsync(userRss);
+            }
+            rssFeedDao.delete(rssFeed.getKey());
+            throw new RuntimeException(e);
         }
         // サイトのタイトル
         rssFeed.setTitle(feed.getTitle());

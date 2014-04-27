@@ -36,7 +36,8 @@ public class RssService {
             try {
                 crawlService.crawl(rssFeed);
             } catch (final FeedException e) {
-                // no-op
+                // TODO レスポンスを返却する必要あり
+                return;
             }
 
             // crawl終了後に登録（初回のcrawlではPocketに登録しない）
