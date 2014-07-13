@@ -5,6 +5,7 @@ import hm.orz.chaos114.gae.rsspocket.dao.UserRssDao;
 import hm.orz.chaos114.gae.rsspocket.model.Feeds;
 import hm.orz.chaos114.gae.rsspocket.model.UserRss;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,15 +27,17 @@ public class RssController extends Controller {
         final User user = requestScope("user");
         final List<UserRss> userRssList = dao.getByUser(user);
         final Map<UserRss, List<Feeds>> map = new HashMap<>();
+        final List<UserRss> userRssListNotNull = new ArrayList<>();
         for (final UserRss userRss : userRssList) {
             try {
                 final List<Feeds> feedsList = feedsDao.getList(userRss.getRssFeed().getModel(), 0, 10);
                 map.put(userRss, feedsList);
+                userRssListNotNull.add(userRss);
             } catch(final EntityNotFoundRuntimeException e) {
-                userRssList.remove(userRss);
+                e.printStackTrace();
             }
         }
-        requestScope("userRssList", userRssList);
+        requestScope("userRssList", userRssListNotNull);
         requestScope("feedsList", map);
 
         return forward("rss.jsp");
