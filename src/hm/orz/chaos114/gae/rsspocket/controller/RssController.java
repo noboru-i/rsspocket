@@ -11,6 +11,7 @@ import java.util.Map;
 
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
+import org.slim3.datastore.EntityNotFoundRuntimeException;
 
 import com.google.appengine.api.users.User;
 
@@ -26,8 +27,12 @@ public class RssController extends Controller {
         final List<UserRss> userRssList = dao.getByUser(user);
         final Map<UserRss, List<Feeds>> map = new HashMap<>();
         for (final UserRss userRss : userRssList) {
-            final List<Feeds> feedsList = feedsDao.getList(userRss.getRssFeed().getModel(), 0, 10);
-            map.put(userRss, feedsList);
+            try {
+                final List<Feeds> feedsList = feedsDao.getList(userRss.getRssFeed().getModel(), 0, 10);
+                map.put(userRss, feedsList);
+            } catch(final EntityNotFoundRuntimeException e) {
+                userRssList.remove(userRss);
+            }
         }
         requestScope("userRssList", userRssList);
         requestScope("feedsList", map);
